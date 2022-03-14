@@ -33,8 +33,7 @@ certManager:
     renewBefore: 360h0m0s
     subject: {}
     commonName: ""
-    organizations:
-      - replaceme
+    organizations: []
     privateKey:
       size: 2048
       algorithm: RSA
@@ -197,7 +196,7 @@ pvcAutoresizer:
       prometheusURL: http://kube-prometheus-stack-prometheus.kube-prometheus-stack
       interval: 10s
 sentry:
-  enabled: true
+  enabled: false
   targetRevision: "~13.1.0"
   syncPolicy:
     automated:
