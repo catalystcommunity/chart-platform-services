@@ -19,9 +19,9 @@ spec:
     algorithm: {{ .Values.certManager.wildcardCert.privateKey.algorithm}}
     encoding: {{ .Values.certManager.wildcardCert.privateKey.encoding}}
   usages:
-    {{- .Values.certManager.wildcardCert.organizations | toYaml | nindent 4 }}
+    {{- .Values.certManager.wildcardCert.usages | toYaml | nindent 4 }}
   dnsNames:
-    {{ .Values.certManager.wildcardCert.usages | toYaml | nindent 4}}
+    {{ .Values.certManager.wildcardCert.dnsNames | toYaml | nindent 4}}
   issuerRef:
     name: cluster-issuer
     kind: ClusterIssuer
