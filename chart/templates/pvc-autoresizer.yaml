@@ -1,0 +1,27 @@
+{{- if .Values.pvcAutoresizer.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-pvc-autoresizer
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://topolvm.github.io/pvc-autoresizer'
+    chart: pvc-autoresizer
+    targetRevision: {{ .Values.pvcAutoresizer.targetRevision | quote }}
+    helm:
+      releaseName: pvc-autoresizer
+      version: v3
+      {{- with .Values.pvcAutoresizer.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pvc-autoresizer
+  syncPolicy:
+  {{- toYaml .Values.pvcAutoresizer.syncPolicy | nindent 4 }}
+{{- end }}
