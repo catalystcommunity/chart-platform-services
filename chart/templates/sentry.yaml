@@ -1,0 +1,27 @@
+{{- if .Values.sentry.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-sentry
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://sentry-kubernetes.github.io/charts'
+    chart: sentry
+    targetRevision: {{ .Values.sentry.targetRevision | quote }}
+    helm:
+      releaseName: sentry
+      version: v3
+      {{- with .Values.sentry.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sentry
+  syncPolicy:
+  {{- toYaml .Values.sentry.syncPolicy | nindent 4 }}
+{{- end }}

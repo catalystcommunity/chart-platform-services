@@ -1,0 +1,28 @@
+{{- if .Values.certManager.enabled }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-certificate
+  namespace: cert-manager
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  secretName: wildcard-certificate
+  duration: {{ .Values.certManager.wildcardCert.duration }}
+  renewBefore: {{ .Values.certManager.wildcardCert.renewBefore }}
+  subject:
+    organizations:
+      {{- .Values.certManager.wildcardCert.organizations | toYaml | nindent 6 }}
+  commonName: {{ .Values.certManager.wildcardCert.commonName }}
+  privateKey:
+    size: {{ .Values.certManager.wildcardCert.privateKey.size}}
+    algorithm: {{ .Values.certManager.wildcardCert.privateKey.algorithm}}
+    encoding: {{ .Values.certManager.wildcardCert.privateKey.encoding}}
+  usages:
+    {{- .Values.certManager.wildcardCert.organizations | toYaml | nindent 4 }}
+  dnsNames:
+    {{ .Values.certManager.wildcardCert.usages | toYaml | nindent 4}}
+  issuerRef:
+    name: cluster-issuer
+    kind: ClusterIssuer
+{{- end }}

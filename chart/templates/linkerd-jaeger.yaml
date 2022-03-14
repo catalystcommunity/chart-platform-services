@@ -1,0 +1,27 @@
+{{- if .Values.linkerdJaeger.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-linkerd-jaeger
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://helm.linkerd.io/stable
+    chart: linkerd-jaeger
+    targetRevision: {{ .Values.linkerdJaeger.targetRevision | quote }}
+    helm:
+      releaseName: linkerd-jaeger
+      version: v3
+      {{- with .Values.linkerdJaeger.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: linkerd-jaeger
+  syncPolicy:
+  {{- toYaml .Values.linkerdJaeger.syncPolicy | nindent 4 }}
+{{- end }}
