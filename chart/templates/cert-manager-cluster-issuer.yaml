@@ -13,7 +13,7 @@ spec:
     privateKeySecretRef:
       name: cluster-issuer
     {{- with .Values.certManager.clusterIssuer.solvers }}
-    solvers: |
+    solvers:
       {{- toYaml . | nindent 6 }}
     {{- end }}
 {{- end }}
