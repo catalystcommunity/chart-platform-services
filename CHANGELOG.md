@@ -1,3 +1,10 @@
+# [1.0.0-alpha.2](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2022-03-14)
+
+
+### Bug Fixes
+
+* Disable sentry by default, default organizations to empty, fix wildcard cert configuration ([#2](https://github.com/catalystsquad/chart-platform-services/issues/2)) ([126372b](https://github.com/catalystsquad/chart-platform-services/commit/126372b61b5456110dd53d05c4e0950213d15726))
+
 # 1.0.0-alpha.1 (2022-03-14)
 
 
