@@ -1,3 +1,10 @@
+# [1.0.0-alpha.4](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2022-03-15)
+
+
+### Features
+
+* add cluster autoscaler ([#4](https://github.com/catalystsquad/chart-platform-services/issues/4)) ([e83f1d1](https://github.com/catalystsquad/chart-platform-services/commit/e83f1d1db208bcd77c54de70344c07c1ba5eef76))
+
 # [1.0.0-alpha.3](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2022-03-14)
 
 
