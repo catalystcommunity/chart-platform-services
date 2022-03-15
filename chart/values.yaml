@@ -42,6 +42,36 @@ certManager:
       - server auth
       - client auth
     dnsNames: []
+clusterAutoscaler:
+  enabled: false
+  targetRevision: "~9.16.1"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    # hardcode aws values and fields, because other hosted k8s platforms won't
+    # require the cluster autoscaler
+    cloudProvider: aws
+    awsRegion: replaceme
+    autoDiscovery:
+      clusterName: replaceme
+    rbac:
+      serviceAccount:
+        annotations: {}
+          # eks.amazonaws.com/role-arn: arn:aws:iam::account-id:role/iam-role-name
+        # hardcode service account name to make IRSA configuration simpler
+        name: "cluster-autoscaler"
 contour:
   enabled: true
   targetRevision: "~7.3.10"
