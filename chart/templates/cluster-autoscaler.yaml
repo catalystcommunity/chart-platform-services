@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Release.Name }}-cert-manager
+  name: {{ .Release.Name }}-cluster-autoscaler
   namespace: {{ .Values.argoNamespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
