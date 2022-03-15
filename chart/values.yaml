@@ -44,7 +44,7 @@ certManager:
     dnsNames: []
 clusterAutoscaler:
   enabled: false
-  targetRevision: ""
+  targetRevision: "~9.16.1"
   syncPolicy:
     automated:
       prune: true
