@@ -6,8 +6,8 @@ metadata:
   namespace: linkerd
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-stringData:
-  tls.crt: {{ .Values.linkerd.values.identityTrustAnchorsPEM | quote }}
-  tls.key: {{ .Values.linkerd.trustAnchor.key | quote }}
+data:
+  tls.cert: |{{ .Values.linkerd.values.identityTrustAnchorsPEM | trim | nindent 4 }}
+  tls.key: |{{ .Values.linkerd.trustAnchor.key | trim | nindent 4 }}
 type: kubernetes.io/tls
 {{- end }}
