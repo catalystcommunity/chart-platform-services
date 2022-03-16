@@ -1,3 +1,11 @@
+# [1.0.0-alpha.5](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-03-16)
+
+
+### Bug Fixes
+
+* Added fusion auth and postgres for fusion auth to the chart ([#6](https://github.com/catalystsquad/chart-platform-services/issues/6)) ([e457b99](https://github.com/catalystsquad/chart-platform-services/commit/e457b998f2247a1409e0b34768358cd9dd51ffc5))
+* Remove trustanchor.crt value in favor of existing chart value named identityTrustAnchorsPEM. ([#5](https://github.com/catalystsquad/chart-platform-services/issues/5)) ([46d7ddc](https://github.com/catalystsquad/chart-platform-services/commit/46d7ddcb3cd253a1eeaaebdb0245f864595b22ac))
+
 # [1.0.0-alpha.4](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2022-03-15)
 
 
