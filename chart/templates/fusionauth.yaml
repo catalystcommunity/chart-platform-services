@@ -1,0 +1,27 @@
+{{- if .Values.fusionAuth.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-fusion-auth
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://fusionauth.github.io/charts
+    chart: fusionauth
+    targetRevision: {{ .Values.fusionAuth.targetRevision | quote }}
+    helm:
+      releaseName: fusion-auth
+      version: v3
+      {{- with .Values.fusionAuth.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: fusion-auth
+  syncPolicy:
+  {{- toYaml .Values.fusionAuth.syncPolicy | nindent 4 }}
+{{- end }}

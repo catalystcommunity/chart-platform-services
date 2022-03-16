@@ -1,0 +1,27 @@
+{{- if .Values.fusionAuthPostgres.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-fusion-auth-postgres
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: postgresql
+    targetRevision: {{ .Values.fusionAuthPostgres.targetRevision | quote }}
+    helm:
+      releaseName: fusion-auth
+      version: v3
+      {{- with .Values.fusionAuthPostgres.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: fusion-auth
+  syncPolicy:
+  {{- toYaml .Values.fusionAuthPostgres.syncPolicy | nindent 4 }}
+{{- end }}
