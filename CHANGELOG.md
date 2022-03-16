@@ -1,3 +1,10 @@
+# [1.0.0-alpha.6](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2022-03-16)
+
+
+### Bug Fixes
+
+* Use stringData not data, the cert and key should no longer be base64 encoded ([#7](https://github.com/catalystsquad/chart-platform-services/issues/7)) ([ee37b80](https://github.com/catalystsquad/chart-platform-services/commit/ee37b80f9f6ede27a9850641e0cf5b48fcfb2d4d))
+
 # [1.0.0-alpha.5](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-03-16)
 
 
