@@ -1,3 +1,10 @@
+# [1.0.0-alpha.7](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2022-03-16)
+
+
+### Bug Fixes
+
+* Use pipes to insert cert data as a multiline string ([#8](https://github.com/catalystsquad/chart-platform-services/issues/8)) ([9f51f99](https://github.com/catalystsquad/chart-platform-services/commit/9f51f99c0baa5da40d39d39c24accb9977c54138))
+
 # [1.0.0-alpha.6](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2022-03-16)
 
 
