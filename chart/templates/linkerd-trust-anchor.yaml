@@ -7,7 +7,9 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 data:
-  tls.cert: |{{ .Values.linkerd.values.identityTrustAnchorsPEM | trim | nindent 4 }}
-  tls.key: |{{ .Values.linkerd.trustAnchor.key | trim | nindent 4 }}
+  tls.cert: |
+    {{- .Values.linkerd.values.identityTrustAnchorsPEM | trim | nindent 4 }}
+  tls.key: |
+    {{- .Values.linkerd.trustAnchor.key | trim | nindent 4 }}
 type: kubernetes.io/tls
 {{- end }}
