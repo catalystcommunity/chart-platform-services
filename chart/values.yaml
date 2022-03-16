@@ -124,6 +124,49 @@ externalDns:
     sources:
       - contour-httpproxy
       - ingress
+fusionAuth:
+  enabled: false
+  targetRevision: "~0.10.5"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    database:
+      host: fusion-auth-postgresql
+      name: fusionauth
+      user: postgres
+      root:
+        user: postgres
+    search:
+      engine: database
+fusionAuthPostgres:
+  enabled: false
+  targetRevision: "~11.1.7"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
 linkerd:
   enabled: true
   targetRevision: "~2.11.1"

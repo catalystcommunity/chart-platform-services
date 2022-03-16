@@ -1,0 +1,36 @@
+fusionAuth:
+  enabled: true
+  values:
+    database:
+      host: fusion-auth-postgresql
+      name: fusionauth
+      password: postgres
+      user: postgres
+      root:
+        password: postgres
+        user: postgres
+    search:
+      engine: database
+fusionAuthPostgres:
+  enabled: true
+  values:
+    global:
+      postgresql:
+        auth:
+          postgresPassword: postgres
+certManager:
+  enabled: false
+contour:
+  enabled: false
+externalDns:
+  enabled: false
+linkerd:
+  enabled: false
+linkerdViz:
+  enabled: false
+linkerdJaeger:
+  enabled: false
+metricsServer:
+  enabled: false
+pvcAutoresizer:
+  enabled: false
