@@ -8,8 +8,8 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 data:
   tls.crt: |
-    {{- .Values.linkerd.values.identityTrustAnchorsPEM | trim | nindent 4 }}
+    {{- .Values.linkerd.values.identityTrustAnchorsPEM | b64enc | trim | nindent 4 }}
   tls.key: |
-    {{- .Values.linkerd.trustAnchor.key | trim | nindent 4 }}
+    {{- .Values.linkerd.trustAnchor.key | b64enc | trim | nindent 4 }}
 type: kubernetes.io/tls
 {{- end }}
