@@ -1,3 +1,10 @@
+# [1.0.0-alpha.9](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2022-03-17)
+
+
+### Bug Fixes
+
+* Default to not creating resources that would rotate certificates. ([#10](https://github.com/catalystsquad/chart-platform-services/issues/10)) ([0d1a8cf](https://github.com/catalystsquad/chart-platform-services/commit/0d1a8cf7998f83165ade3798563207470ed03dfa))
+
 # [1.0.0-alpha.8](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2022-03-17)
 
 
