@@ -1,3 +1,10 @@
+# [1.0.0-alpha.8](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2022-03-17)
+
+
+### Bug Fixes
+
+* Use stringData for cert pem because the linkerd chart requires it as a string for a configmap, but we need it in a secret for the trust anchor ([#9](https://github.com/catalystsquad/chart-platform-services/issues/9)) ([e0605c3](https://github.com/catalystsquad/chart-platform-services/commit/e0605c387b37f175813d88337eab37d0af79e389))
+
 # [1.0.0-alpha.7](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2022-03-16)
 
 
