@@ -1,4 +1,4 @@
-{{- if and (.Values.certManager.enabled) (.Values.linkerd.enabled)}}
+{{- if and (.Values.certManager.enabled) (.Values.linkerd.enabled) (.Values.linkerd.rotateCerts) }}
 apiVersion: v1
 kind: Secret
 metadata:
