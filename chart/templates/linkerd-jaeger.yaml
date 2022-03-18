@@ -24,4 +24,8 @@ spec:
     namespace: linkerd-jaeger
   syncPolicy:
   {{- toYaml .Values.linkerdJaeger.syncPolicy | nindent 4 }}
+  {{- with .Values.linkerdJaeger.ignoreDifferences }}
+  ignoreDifferences:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 {{- end }}

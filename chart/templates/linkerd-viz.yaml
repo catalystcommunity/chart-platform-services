@@ -24,4 +24,8 @@ spec:
     namespace: linkerd-viz
   syncPolicy:
   {{- toYaml .Values.linkerdViz.syncPolicy | nindent 4 }}
+  {{- with .Values.linkerdViz.ignoreDifferences }}
+  ignoreDifferences:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 {{- end }}

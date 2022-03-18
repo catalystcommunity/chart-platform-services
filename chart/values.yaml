@@ -258,6 +258,37 @@ linkerdViz:
         duration: 5s
         factor: 2
         maxDuration: 3m
+  ignoreDifferences:
+    - jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: tap-injector-k8s-tls
+    - jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: tap-k8s-tls
+    - group: admissionregistration.k8s.io
+      jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
+      kind: MutatingWebhookConfiguration
+      name: linkerd-tap-injector-webhook-config
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.metadata.annotations."checksum/config"
+      kind: Deployment
+      name: tap
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.metadata.annotations."checksum/config"
+      kind: Deployment
+      name: tap-injector
+    - group: apiregistration.k8s.io
+      jsonPointers:
+        - /spec/caBundle
+      kind: APIService
+      name: v1alpha1.tap.linkerd.io
 linkerdJaeger:
   enabled: true
   targetRevision: "~2.11.1"
@@ -275,6 +306,22 @@ linkerdJaeger:
         duration: 5s
         factor: 2
         maxDuration: 3m
+  ignoreDifferences:
+    - jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: jaeger-injector-k8s-tls
+    - group: admissionregistration.k8s.io
+      jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
+      kind: MutatingWebhookConfiguration
+      name: linkerd-jaeger-injector-webhook-config
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.metadata.annotations."checksum/config"
+      kind: Deployment
+      name: jaeger-injector
 metricsServer:
   enabled: true
   targetRevision: "~5.11.3"
