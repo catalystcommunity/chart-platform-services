@@ -200,17 +200,20 @@ linkerd:
         - /spec/schedule
       kind: CronJob
       name: linkerd-heartbeat
-    - jsonPointers:
+    - group: ''
+      jsonPointers:
         - /data/tls.crt
         - /data/tls.key
       kind: Secret
       name: linkerd-policy-validator-k8s-tls
-    - jsonPointers:
+    - group: ''
+      jsonPointers:
         - /data/tls.crt
         - /data/tls.key
       kind: Secret
       name: linkerd-proxy-injector-k8s-tls
-    - jsonPointers:
+    - group: ''
+      jsonPointers:
         - /data/tls.crt
         - /data/tls.key
       kind: Secret
