@@ -1,3 +1,10 @@
+# [1.0.0-alpha.10](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2022-03-18)
+
+
+### Bug Fixes
+
+* Linkerd uses helm template commands to generate certs. This happens on every sync, so it goes into a loop. This commit adds the necessary ignore differences specification to avoid an out of sync loop. ([#11](https://github.com/catalystsquad/chart-platform-services/issues/11)) ([865e29b](https://github.com/catalystsquad/chart-platform-services/commit/865e29b5316a8247bd72fcdd913410d2f31dd15d))
+
 # [1.0.0-alpha.9](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2022-03-17)
 
 
