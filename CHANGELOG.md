@@ -1,3 +1,10 @@
+# [1.0.0-alpha.12](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-03-18)
+
+
+### Bug Fixes
+
+* Add empty group so argo will stop diffing. ([#13](https://github.com/catalystsquad/chart-platform-services/issues/13)) ([b9c8f25](https://github.com/catalystsquad/chart-platform-services/commit/b9c8f2587aa4a27b1917f9b5e18e357e017b2c84))
+
 # [1.0.0-alpha.11](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2022-03-18)
 
 
