@@ -194,6 +194,52 @@ linkerd:
   values:
     identityTrustAnchorsPEM: |
     installNamespace: false
+  ignoreDifferences:
+    - group: batch
+      jsonPointers:
+        - /spec/schedule
+      kind: CronJob
+      name: linkerd-heartbeat
+    - jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: linkerd-policy-validator-k8s-tls
+    - jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: linkerd-proxy-injector-k8s-tls
+    - jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: linkerd-sp-validator-k8s-tls
+    - group: admissionregistration.k8s.io
+      jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
+      kind: MutatingWebhookConfiguration
+      name: linkerd-proxy-injector-webhook-config
+    - group: admissionregistration.k8s.io
+      jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
+      kind: ValidatingWebhookConfiguration
+      name: linkerd-policy-validator-webhook-config
+    - group: admissionregistration.k8s.io
+      jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
+      kind: ValidatingWebhookConfiguration
+      name: linkerd-sp-validator-webhook-config
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.metadata.annotations."checksum/config"
+      kind: Deployment
+      name: linkerd-destination
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.metadata.annotations."checksum/config"
+      kind: Deployment
+      name: linkerd-proxy-injector
 # run `linkerd check` after deployment to make sure viz is working. If checks fail, delete all the pods in the `linkerd-viz` namespace and once they're all healthy again the checks should pass
 linkerdViz:
   enabled: true
