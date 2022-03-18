@@ -1,3 +1,10 @@
+# [1.0.0-alpha.11](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2022-03-18)
+
+
+### Bug Fixes
+
+* Add ignore differences to linkerd-jaeger and linkerd-viz ([#12](https://github.com/catalystsquad/chart-platform-services/issues/12)) ([0294c3e](https://github.com/catalystsquad/chart-platform-services/commit/0294c3eb56976a90b52ad02f167025396b839b47))
+
 # [1.0.0-alpha.10](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2022-03-18)
 
 
