@@ -1,3 +1,10 @@
+# [1.0.0-alpha.14](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2022-03-21)
+
+
+### Bug Fixes
+
+* Default metrics-server apiService.create to true ([#15](https://github.com/catalystsquad/chart-platform-services/issues/15)) ([23b12ce](https://github.com/catalystsquad/chart-platform-services/commit/23b12ce992cf71d6e6aad887d2449eaf2785326e))
+
 # [1.0.0-alpha.13](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-03-21)
 
 
