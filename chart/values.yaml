@@ -348,6 +348,8 @@ metricsServer:
         factor: 2
         maxDuration: 3m
   values:
+    apiService:
+      create: true # creates the v1beta1.metrics.k8s.io API service
     extraArgs:
       kubelet-insecure-tls: ""
       kubelet-preferred-address-types: InternalIP,ExternalIP,Hostname
