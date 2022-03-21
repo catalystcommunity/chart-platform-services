@@ -1,3 +1,10 @@
+# [1.0.0-alpha.13](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-03-21)
+
+
+### Bug Fixes
+
+* Add resource requests to linkerd proxy, and contour envoy shutdown manager. Without these HPAs don't work. ([#14](https://github.com/catalystsquad/chart-platform-services/issues/14)) ([a2c0a0a](https://github.com/catalystsquad/chart-platform-services/commit/a2c0a0a75bb1191cb64c1ffb9e242a08fb96b0e3))
+
 # [1.0.0-alpha.12](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-03-18)
 
 
