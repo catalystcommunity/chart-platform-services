@@ -1,3 +1,10 @@
+# [1.0.0-alpha.15](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2022-03-23)
+
+
+### Bug Fixes
+
+* match aws default for volumeBindingMode ([#16](https://github.com/catalystsquad/chart-platform-services/issues/16)) ([ed75766](https://github.com/catalystsquad/chart-platform-services/commit/ed757662151a7815cf0e8ab32b7175bc6e3f4494))
+
 # [1.0.0-alpha.14](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2022-03-21)
 
 
