@@ -90,6 +90,9 @@ contour:
         factor: 2
         maxDuration: 3m
   values:
+    metrics:
+      serviceMonitor:
+        enabled: true
     envoy:
       shutdownManager:
         resources:
