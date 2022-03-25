@@ -9,6 +9,7 @@ metadata:
     resize.topolvm.io/enabled: "true"
 provisioner: kubernetes.io/aws-ebs
 allowVolumeExpansion: true
+volumeBindingMode: WaitForFirstConsumer
 parameters:
   type: gp2
   fsType: ext4
