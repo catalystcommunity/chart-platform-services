@@ -1,3 +1,10 @@
+# [1.0.0-alpha.16](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-03-25)
+
+
+### Bug Fixes
+
+* enable metrics in contour ([#17](https://github.com/catalystsquad/chart-platform-services/issues/17)) ([50c832e](https://github.com/catalystsquad/chart-platform-services/commit/50c832e24af2988865195123b5a44546cd48b97b))
+
 # [1.0.0-alpha.15](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2022-03-23)
 
 
