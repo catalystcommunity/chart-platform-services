@@ -23,6 +23,7 @@ data:
       isDefault: true
       jsonData:
         timeInterval: 30s
+{{- end }}
 {{- if .Values.loki.enabled }}
     - name: Loki
       type: loki
@@ -30,6 +31,5 @@ data:
       url:  http://loki-distributed-gateway.loki/
       access: proxy
       isDefault: false
-{{- end }}
 {{- end }}
 {{- end }}
