@@ -1,3 +1,10 @@
+# [1.0.0-alpha.19](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.18...v1.0.0-alpha.19) (2022-03-28)
+
+
+### Bug Fixes
+
+* cortex/loki auth secret namespace ([#20](https://github.com/catalystsquad/chart-platform-services/issues/20)) ([eef2b81](https://github.com/catalystsquad/chart-platform-services/commit/eef2b81bb1a8d735f4f1ef550d7887062f136285))
+
 # [1.0.0-alpha.18](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-03-28)
 
 
