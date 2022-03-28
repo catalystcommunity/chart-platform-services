@@ -1,0 +1,27 @@
+{{- if .Values.cortex.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-cortex
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://cortexproject.github.io/cortex-helm-chart
+    chart: cortex
+    targetRevision: {{ .Values.cortex.targetRevision | quote }}
+    helm:
+      releaseName: cortex
+      version: v3
+      {{- with .Values.cortex.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cortex
+  syncPolicy:
+  {{- toYaml .Values.cortex.syncPolicy | nindent 4 }}
+{{- end }}
