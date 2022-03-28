@@ -1,3 +1,10 @@
+# [1.0.0-alpha.17](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-03-28)
+
+
+### Features
+
+* initial observability stack ([#18](https://github.com/catalystsquad/chart-platform-services/issues/18)) ([d864f5e](https://github.com/catalystsquad/chart-platform-services/commit/d864f5e80d7873973ca3687ddfc377ea1dabd8d8))
+
 # [1.0.0-alpha.16](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-03-25)
 
 
