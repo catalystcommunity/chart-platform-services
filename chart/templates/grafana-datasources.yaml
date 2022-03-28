@@ -5,8 +5,8 @@ metadata:
   name: {{ .Release.Name }}-grafana-datasources
   namespace: grafana
   labels:
-    {{- if $.Values.grafana.sidecar.datasources.label }}
-    {{ $.Values.grafana.sidecar.datasources.label }}: "1"
+    {{- if $.Values.grafana.values.sidecar.datasources.label }}
+    {{ $.Values.grafana.values.sidecar.datasources.label }}: "1"
     {{- end }}
     app: {{ template "platform-services.name" $ }}-grafana
 {{ include "platform-services.labels" $ | indent 4 }}
