@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: {{ .Values.loki.basicAuthSecret.name }}
+  namespace: loki
   labels:
 {{ include "platform-services.labels" $ | indent 6 }}
 type: Opaque
