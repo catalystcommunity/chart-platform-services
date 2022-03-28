@@ -1,3 +1,10 @@
+# [1.0.0-alpha.18](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-03-28)
+
+
+### Bug Fixes
+
+* grafana datasource value reference ([#19](https://github.com/catalystsquad/chart-platform-services/issues/19)) ([0264a06](https://github.com/catalystsquad/chart-platform-services/commit/0264a066504ef910b5ce81e28d0155bb6e139d19))
+
 # [1.0.0-alpha.17](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-03-28)
 
 

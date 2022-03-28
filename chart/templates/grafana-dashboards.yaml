@@ -10,8 +10,8 @@ metadata:
   name: {{ printf "%s-%s" (include "platform-services.fullname" $) $dashboardName | trunc 53 | trimSuffix "-" }}-dashboard
   namespace: grafana
   labels:
-    {{- if $.Values.grafana.sidecar.dashboards.label }}
-    {{ $.Values.grafana.sidecar.dashboards.label }}: "1"
+    {{- if $.Values.grafana.values.sidecar.dashboards.label }}
+    {{ $.Values.grafana.values.sidecar.dashboards.label }}: "1"
     {{- end }}
     app: {{ template "platform-services.name" $ }}-grafana
 {{ include "platform-services.labels" $ | indent 4 }}
