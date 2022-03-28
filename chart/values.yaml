@@ -107,6 +107,198 @@ contour:
         minReplicas: 1
         maxReplicas: 1
         targetCPU: 70%
+cortex:
+  enabled: false
+  targetRevision: "~1.4.0"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  basicAuthSecret:
+    enabled: true
+    name: cortex-auth
+    # generate htpasswd with: htpasswd -B -b -n username password
+    # below contains examples, replace them
+    htpasswd: |
+      nonprod:$2y$05$cSeN/kud57vDkTULaweVreqM5k2GpTM950hy2NS5hi/0qaPvUdM4.
+      prod:$2y$05$lghWCuEkcwKDVVlIzrfNzuwBa7HUUtUEbbfP0pLzZtbYhGOuOJJz6
+      common:$2y$05$v.M9LmRpvgsQ2/clf9tJ9e5LqvI7CsklNsDbnrKZCvqwSuA.M24IC
+  values:
+    tags:
+      blocks-storage-memcached: true
+    serviceAccount:
+      name: cortex
+      annotations: {}
+        # eks.amazonaws.com/role-arn: arn:aws:iam::account-id:role/iam-role-name
+    ingress:
+      enabled: true
+      ingressClass:
+        enabled: true
+        name: contour
+      hosts:
+        - host: replaceme
+          paths:
+            - /
+    config:
+      storage:
+        engine: blocks
+      blocks_storage:
+        backend: s3
+        s3:
+          bucket_name: replaceme
+          endpoint: s3.us-west-2.amazonaws.com
+      ruler_storage:
+        backend: s3
+        s3:
+          bucket_name: replaceme
+          endpoint: s3.us-west-2.amazonaws.com
+      alertmanager_storage:
+        backend: s3
+        s3: 
+          bucket_name: replaceme
+          endpoint: s3.us-west-2.amazonaws.com
+      limits:
+        max_series_per_metric: 0
+        compactor_blocks_retention_period: 91d
+    alertmanager:
+      serviceMonitor:
+        enabled: true
+    distributor:
+      replicas: 2
+      serviceMonitor:
+        enabled: true
+      resources: {}
+      autoscaling:
+        enabled: false
+        # minReplicas: 2
+        # maxReplicas: 30
+        # targetCPUUtilizationPercentage: 80
+        # targetMemoryUtilizationPercentage: 0  # 80
+    ingester:
+      enabled: true
+      replicas: 3
+      statefulSet:
+        enabled: false
+      serviceMonitor:
+        enabled: true
+      resources: {}
+      autoscaling:
+        enabled: false
+        # minReplicas: 3
+        # maxReplicas: 30
+        # targetMemoryUtilizationPercentage: 80
+      persistentVolume:
+        size: 20Gi # 10x default
+    ruler:
+      enabled: true
+      replicas: 1
+      serviceMonitor:
+        enabled: true
+      resources: {}
+    querier:
+      enabled: true
+      replicas: 2
+      serviceMonitor:
+        enabled: true
+      resources: {}
+      autoscaling:
+        enabled: false
+        # minReplicas: 2
+        # maxReplicas: 30
+        # targetCPUUtilizationPercentage: 80
+        # targetMemoryUtilizationPercentage: 0  # 80
+    query_frontend:
+      enabled: true
+      replicas: 2
+      serviceMonitor:
+        enabled: true
+      resources: {}
+    query_scheduler:
+      enabled: true
+      replicas: 2
+      serviceMonitor:
+        enabled: true
+      resources: {}
+    nginx:
+      enabled: true
+      replicas: 2
+      config:
+        basicAuthSecretName: cortex-auth
+      resources: {}
+      autoscaling:
+        enabled: false
+        # minReplicas: 2
+        # maxReplicas: 30
+        # targetCPUUtilizationPercentage: 80
+        # targetMemoryUtilizationPercentage: 0  # 80
+    store_gateway:
+      enabled: true
+      replicas: 1
+      serviceMonitor:
+        enabled: true
+      resources: {}
+      persistentVolume:
+        size: 20Gi # 10x default
+    compactor:
+      enabled: true
+      replicas: 1
+      serviceMonitor:
+        enabled: true
+      resources: {}
+      persistentVolume:
+        size: 20Gi # 10x default
+    # enabled/disabled via the tags.blocks-storage-memcached boolean
+    memcached-blocks-index:
+      replicaCount: 2
+      resources: {}
+      extraEnv:
+        - name: MEMCACHED_CACHE_SIZE
+          value: "1024"
+        - name: MEMCACHED_MAX_CONNECTIONS
+          value: "1024"
+        - name: MEMCACHED_THREADS
+          value: "4"
+      metrics:
+        serviceMonitor:
+          enabled: true
+    memcached-blocks:
+      architecture: "high-availability"
+      replicaCount: 2
+      resources: {}
+      extraEnv:
+        - name: MEMCACHED_CACHE_SIZE
+          value: "1024"
+        - name: MEMCACHED_MAX_CONNECTIONS
+          value: "1024"
+        - name: MEMCACHED_THREADS
+          value: "4"
+      metrics:
+        serviceMonitor:
+          enabled: true
+    memcached-blocks-metadata:
+      architecture: "high-availability"
+      replicaCount: 2
+      resources: {}
+      extraEnv:
+        - name: MEMCACHED_CACHE_SIZE
+          value: "1024"
+        - name: MEMCACHED_MAX_CONNECTIONS
+          value: "1024"
+        - name: MEMCACHED_THREADS
+          value: "4"
+      metrics:
+        serviceMonitor:
+          enabled: true
 externalDns:
   enabled: true
   targetRevision: "~6.1.6"
@@ -171,6 +363,50 @@ fusionAuthPostgres:
         duration: 5s
         factor: 2
         maxDuration: 3m
+grafana:
+  enabled: false
+  targetRevision: "~6.24.1"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  deployDashboards: true
+  deployDatasources: true
+  values:
+    grafana.ini:
+      server:
+        root_url: https://replaceme
+    deploymentStrategy:
+      type: Recreate
+    ingress:
+      enabled: true
+      annotations: {}
+      ingressClassName: contour
+      hosts:
+        - replaceme
+      tls: []
+    persistence:
+      type: pvc
+      enabled: true
+      size: 20Gi # 2x default
+    resources: {}
+    sidecar:
+      dashboards:
+        enabled: true
+        label: grafana_dashboard
+      datasources:
+        enabled: true
+        label: grafana_datasource
 linkerd:
   enabled: true
   rotateCerts: false
@@ -333,6 +569,209 @@ linkerdJaeger:
         - .spec.template.metadata.annotations."checksum/config"
       kind: Deployment
       name: jaeger-injector
+loki:
+  enabled: false
+  targetRevision: "~0.46.2"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  basicAuthSecret:
+    enabled: true
+    name: loki-auth
+    # generate htpasswd with: htpasswd -B -b -n username password
+    # below contains examples, replace them
+    htpasswd: |
+      nonprod:$2y$05$uVfvMiek6GWobBbpYpWSr..uPx/1la7qSnmsA46Yk01vc.YuzoFWW
+      prod:$2y$05$ZzXT9x/nyUqn8iRgG2IR0.kO20dJY73ql4oVXlHR8EMudM7ftYDZa
+      common:$2y$05$oBoL5/JZEVwGYX.EZOqRBeO49LX/bGycWH5cmiDIcDH45RuCRpVhq
+  values:
+    loki:
+      structuredConfig:
+        limits_config:
+          retention_period: 168h # 7 days
+        ingester:
+          # Disable chunk transfer which is not possible with statefulsets
+          # and unnecessary for boltdb-shipper
+          max_transfer_retries: 0
+          chunk_idle_period: 1h
+          chunk_target_size: 1536000
+          max_chunk_age: 1h
+        storage_config:
+          aws:
+            s3: s3://us-west-2
+            bucketnames: ""
+          boltdb_shipper:
+            shared_store: s3
+            index_gateway_client:
+              # hardcode index gateway dns name to mitigate but in the helm chart
+              # https://github.com/grafana/helm-charts/issues/1003
+              server_address: dns:///loki-distributed-index-gateway:9095
+        schema_config:
+          configs:
+            - from: 2022-01-01
+              store: boltdb-shipper
+              object_store: aws
+              schema: v11
+              index:
+                prefix: loki_index_
+                period: 24h
+      # specify the entire config to override a bug in the chart
+      # https://github.com/grafana/helm-charts/issues/1003 the only deviation from
+      # the devault config is the removal of the if statement enabling the
+      # `index_gateway_client` configuration
+      config: |
+        auth_enabled: false
+        server:
+          http_listen_port: 3100
+        distributor:
+          ring:
+            kvstore:
+              store: memberlist
+        memberlist:
+          join_members:
+            - {{ include "loki.fullname" . }}-memberlist
+        ingester:
+          lifecycler:
+            ring:
+              kvstore:
+                store: memberlist
+              replication_factor: 1
+          chunk_idle_period: 30m
+          chunk_block_size: 262144
+          chunk_encoding: snappy
+          chunk_retain_period: 1m
+          max_transfer_retries: 0
+          wal:
+            dir: /var/loki/wal
+        limits_config:
+          enforce_metric_name: false
+          reject_old_samples: true
+          reject_old_samples_max_age: 168h
+          max_cache_freshness_per_query: 10m
+        {{- if .Values.loki.schemaConfig}}
+        schema_config:
+        {{- toYaml .Values.loki.schemaConfig | nindent 2}}
+        {{- end}}
+        {{- if .Values.loki.storageConfig}}
+        storage_config:
+        {{- toYaml .Values.loki.storageConfig | nindent 2}}
+        {{- end}}
+        chunk_store_config:
+          max_look_back_period: 0s
+        table_manager:
+          retention_deletes_enabled: false
+          retention_period: 0s
+        query_range:
+          align_queries_with_step: true
+          max_retries: 5
+          split_queries_by_interval: 15m
+          cache_results: true
+          results_cache:
+            cache:
+              enable_fifocache: true
+              fifocache:
+                max_size_items: 1024
+                validity: 24h
+        frontend_worker:
+          frontend_address: {{ include "loki.queryFrontendFullname" . }}:9095
+        frontend:
+          log_queries_longer_than: 5s
+          compress_responses: true
+          tail_proxy_url: http://{{ include "loki.querierFullname" . }}:3100
+        compactor:
+          shared_store: filesystem
+        ruler:
+          storage:
+            type: local
+            local:
+              directory: /etc/loki/rules
+          ring:
+            kvstore:
+              store: memberlist
+          rule_path: /tmp/loki/scratch
+          alertmanager_url: https://alertmanager.xx
+          external_url: https://alertmanager.xx
+    serviceAccount:
+      name: loki
+      annotations: {}
+        # eks.amazonaws.com/role-arn: arn:aws:iam::account-id:role/iam-role-name
+    serviceMonitor:
+      enabled: true
+    ingester:
+      replicas: 2
+      persistence:
+        enabled: true
+        size: 10Gi
+      resources: {}
+    distributor:
+      replicas: 1
+      autoscaling:
+        enabled: false
+        # minReplicas: 1
+        # maxReplicas: 3
+        # targetCPUUtilizationPercentage: 60
+        # targetMemoryUtilizationPercentage:
+      resources: {}
+    querier:
+      replicas: 1
+      autoscaling:
+        enabled: false
+        # minReplicas: 1
+        # maxReplicas: 3
+        # targetCPUUtilizationPercentage: 60
+        # targetMemoryUtilizationPercentage:
+      resources: {}
+    queryFrontend:
+      replicas: 1
+      autoscaling:
+        enabled: false
+        # minReplicas: 1
+        # maxReplicas: 3
+        # targetCPUUtilizationPercentage: 60
+        # targetMemoryUtilizationPercentage:
+      resources: {}
+    gateway:
+      replicas: 1
+      autoscaling:
+        enabled: false
+        # minReplicas: 1
+        # maxReplicas: 3
+        # targetCPUUtilizationPercentage: 60
+        # targetMemoryUtilizationPercentage:
+      resources: {}
+      ingress:
+        enabled: true
+        ingressClassName: contour
+        hosts:
+          - host: replaceme
+            paths:
+              - path: /
+                pathType: Prefix
+      basicAuth:
+        enabled: true
+        existingSecret: loki-auth
+    compactor:
+      enabled: true
+      resources: {}
+      persistence:
+        enabled: true
+        size: 10Gi
+    ruler:
+      enabled: false
+    indexGateway:
+      enabled: true
+      resources: {}
 metricsServer:
   enabled: true
   targetRevision: "~5.11.3"

@@ -1,0 +1,35 @@
+{{- if and (.Values.grafana.enabled) (.Values.grafana.deployDatasources) }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-grafana-datasources
+  namespace: grafana
+  labels:
+    {{- if $.Values.grafana.sidecar.datasources.label }}
+    {{ $.Values.grafana.sidecar.datasources.label }}: "1"
+    {{- end }}
+    app: {{ template "platform-services.name" $ }}-grafana
+{{ include "platform-services.labels" $ | indent 4 }}
+data:
+  datasources.yaml: |-
+    apiVersion: 1
+    datasources:
+{{- if .Values.cortex.enabled }}
+    - name: Cortex
+      type: prometheus
+      uid: prometheus
+      url: http://cortex-nginx.cortex/prometheus
+      access: proxy
+      isDefault: true
+      jsonData:
+        timeInterval: 30s
+{{- end }}
+{{- if .Values.loki.enabled }}
+    - name: Loki
+      type: loki
+      uid: loki
+      url:  http://loki-distributed-gateway.loki/
+      access: proxy
+      isDefault: false
+{{- end }}
+{{- end }}
