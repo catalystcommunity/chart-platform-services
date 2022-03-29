@@ -13,7 +13,7 @@ spec:
     chart: loki-distributed
     targetRevision: {{ .Values.loki.targetRevision | quote }}
     helm:
-      releaseName: loki
+      releaseName: loki-distributed
       version: v3
       {{- with .Values.loki.values }}
       values: |
