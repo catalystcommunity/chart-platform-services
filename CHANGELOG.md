@@ -1,3 +1,10 @@
+# [1.0.0-alpha.23](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.22...v1.0.0-alpha.23) (2022-03-29)
+
+
+### Bug Fixes
+
+* change loki release name to match helm chart ([#24](https://github.com/catalystsquad/chart-platform-services/issues/24)) ([6fdcdc5](https://github.com/catalystsquad/chart-platform-services/commit/6fdcdc5f75a0314e9525d77624b38369e6b8fc0e))
+
 # [1.0.0-alpha.22](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.21...v1.0.0-alpha.22) (2022-03-29)
 
 
