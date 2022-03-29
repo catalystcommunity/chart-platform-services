@@ -1,3 +1,10 @@
+# [1.0.0-alpha.22](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.21...v1.0.0-alpha.22) (2022-03-29)
+
+
+### Bug Fixes
+
+* base64 encode secrets in grafana auth template ([#23](https://github.com/catalystsquad/chart-platform-services/issues/23)) ([fdfa191](https://github.com/catalystsquad/chart-platform-services/commit/fdfa191816f90dab758c1433ab294e1d5d74bab2))
+
 # [1.0.0-alpha.21](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.20...v1.0.0-alpha.21) (2022-03-29)
 
 
