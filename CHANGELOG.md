@@ -1,3 +1,10 @@
+# [1.0.0-alpha.24](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2022-03-29)
+
+
+### Features
+
+* add kubernetes mixing dashboards ([#25](https://github.com/catalystsquad/chart-platform-services/issues/25)) ([ac1f001](https://github.com/catalystsquad/chart-platform-services/commit/ac1f001e07c3dfe8751a20f6b57a8e2831bcd21d)), closes [/github.com/prometheus-operator/kube-prometheus/blob/d6083dcb2d2a36a08e6ec80bd0e21323361ec000/jsonnet/kube-prometheus/components/k8s-control-plane.libsonnet#L11-L26](https://github.com//github.com/prometheus-operator/kube-prometheus/blob/d6083dcb2d2a36a08e6ec80bd0e21323361ec000/jsonnet/kube-prometheus/components/k8s-control-plane.libsonnet/issues/L11-L26)
+
 # [1.0.0-alpha.23](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.22...v1.0.0-alpha.23) (2022-03-29)
 
 
