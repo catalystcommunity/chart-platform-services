@@ -9,11 +9,11 @@ metadata:
 type: Opaque
 data:
 {{- if and (.Values.cortex.enabled) (.Values.grafana.datasourceAuth.cortex) }}
-  CORTEX_USERNAME: {{ .Values.grafana.datasourceAuth.cortex.username }}
-  CORTEX_PASSWORD: {{ .Values.grafana.datasourceAuth.cortex.password }}
+  CORTEX_USERNAME: {{ .Values.grafana.datasourceAuth.cortex.username | b64enc | quote }}
+  CORTEX_PASSWORD: {{ .Values.grafana.datasourceAuth.cortex.password | b64enc | quote }}
 {{- end}}
 {{- if and (.Values.loki.enabled) (.Values.grafana.datasourceAuth.loki) }}
-  LOKI_USERNAME: {{ .Values.grafana.datasourceAuth.loki.username }}
-  LOKI_PASSWORD: {{ .Values.grafana.datasourceAuth.loki.password }}
+  LOKI_USERNAME: {{ .Values.grafana.datasourceAuth.loki.username | b64enc | quote }}
+  LOKI_PASSWORD: {{ .Values.grafana.datasourceAuth.loki.password | b64enc | quote }}
 {{- end}}
 {{- end}}
