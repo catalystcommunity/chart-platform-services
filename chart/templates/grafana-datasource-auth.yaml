@@ -1,0 +1,19 @@
+{{- if and (.Values.grafana.enabled) (and (.Values.grafana.datasourceAuth) (.Values.grafana.deployDatasources)) }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-datasource-auth
+  namespace: grafana
+  labels:
+{{ include "platform-services.labels" $ | indent 6 }}
+type: Opaque
+data:
+{{- if and (.Values.cortex.enabled) (.Values.grafana.datasourceAuth.cortex) }}
+  CORTEX_USERNAME: {{ .Values.grafana.datasourceAuth.cortex.username }}
+  CORTEX_PASSWORD: {{ .Values.grafana.datasourceAuth.cortex.password }}
+{{- end}}
+{{- if and (.Values.loki.enabled) (.Values.grafana.datasourceAuth.loki) }}
+  LOKI_USERNAME: {{ .Values.grafana.datasourceAuth.loki.username }}
+  LOKI_PASSWORD: {{ .Values.grafana.datasourceAuth.loki.password }}
+{{- end}}
+{{- end}}
