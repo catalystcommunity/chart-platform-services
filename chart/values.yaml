@@ -382,12 +382,20 @@ grafana:
         maxDuration: 3m
   deployDashboards: true
   deployDatasources: true
+  datasourceAuth:
+    cortex:
+      username: grafana
+      password:
+    loki:
+      username: grafana
+      password:
   values:
+    deploymentStrategy:
+      type: Recreate
+    envFromSecret: grafana-datasource-auth
     grafana.ini:
       server:
         root_url: https://replaceme
-    deploymentStrategy:
-      type: Recreate
     ingress:
       enabled: true
       annotations: {}
