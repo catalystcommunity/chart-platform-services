@@ -1,3 +1,10 @@
+# [1.0.0-alpha.21](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.20...v1.0.0-alpha.21) (2022-03-29)
+
+
+### Bug Fixes
+
+* add datasource auth environment variable secret ([#22](https://github.com/catalystsquad/chart-platform-services/issues/22)) ([4aa6bcf](https://github.com/catalystsquad/chart-platform-services/commit/4aa6bcf3d8f8393df372f9fca90c963b31ec31eb))
+
 # [1.0.0-alpha.20](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.19...v1.0.0-alpha.20) (2022-03-29)
 
 
