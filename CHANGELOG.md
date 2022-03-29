@@ -1,3 +1,10 @@
+# [1.0.0-alpha.20](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.19...v1.0.0-alpha.20) (2022-03-29)
+
+
+### Features
+
+* add grafana datasource authentication ([#21](https://github.com/catalystsquad/chart-platform-services/issues/21)) ([d117f90](https://github.com/catalystsquad/chart-platform-services/commit/d117f90bd533de88df52f749cd07c079af0b3ed7))
+
 # [1.0.0-alpha.19](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.18...v1.0.0-alpha.19) (2022-03-28)
 
 
