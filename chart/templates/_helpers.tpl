@@ -68,7 +68,7 @@ Create htpasswd values for Cortex. Append Grafana Datasource password to user de
 {{- if .Values.cortex.basicAuthSecret.enabled }}
 {{- .Values.cortex.basicAuthSecret.htpasswd }}
 {{- end }}
-{{- if and .Values.grafana.enabled }}
+{{- if .Values.grafana.enabled }}
 {{- if and (.Values.grafana.datasourceAuth) (.Values.grafana.deployDatasources) }}
 {{- htpasswd (required ".Values.grafana.datasourceAuth.cortex.username is required when using datasourceAuth" .Values.grafana.datasourceAuth.cortex.username) (required ".Values.grafana.datasourceAuth.cortex.password is required when using datasourceAuth" .Values.grafana.datasourceAuth.cortex.password) }}
 {{- end }}
