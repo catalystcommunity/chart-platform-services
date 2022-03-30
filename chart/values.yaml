@@ -806,6 +806,35 @@ metricsServer:
     extraArgs:
       kubelet-insecure-tls: ""
       kubelet-preferred-address-types: InternalIP,ExternalIP,Hostname
+promtail:
+  enabled: false
+  targetRevision: "~3.11.0"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    serviceMonitor:
+      enabled: true
+    config:
+      lokiAddress: http://loki-distributed-gateway.loki/loki/api/v1/push
+      snippets:
+        extraClientConfigs: |
+          external_labels:
+            cluster: replaceme
+          basic_auth:
+            username: replaceme
+            password: replaceme
 pvcAutoresizer:
   enabled: true
   targetRevision: "~0.3.4"
