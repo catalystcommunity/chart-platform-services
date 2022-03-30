@@ -1,3 +1,10 @@
+# [1.0.0-alpha.28](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.27...v1.0.0-alpha.28) (2022-03-30)
+
+
+### Bug Fixes
+
+* rename cortex/loki dashboards to organize better with mixin ([#29](https://github.com/catalystsquad/chart-platform-services/issues/29)) ([8193aa6](https://github.com/catalystsquad/chart-platform-services/commit/8193aa60cb9c8664836bb0c0d9a4bcef9e79c0ea))
+
 # [1.0.0-alpha.27](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.26...v1.0.0-alpha.27) (2022-03-30)
 
 
