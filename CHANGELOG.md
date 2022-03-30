@@ -1,3 +1,10 @@
+# [1.0.0-alpha.26](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.25...v1.0.0-alpha.26) (2022-03-30)
+
+
+### Features
+
+* add promtail ([#27](https://github.com/catalystsquad/chart-platform-services/issues/27)) ([35dec8b](https://github.com/catalystsquad/chart-platform-services/commit/35dec8b35cb328161aba9515df081c0cb4ff55a2))
+
 # [1.0.0-alpha.25](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2022-03-30)
 
 
