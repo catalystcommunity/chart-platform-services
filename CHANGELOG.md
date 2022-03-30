@@ -1,3 +1,10 @@
+# [1.0.0-alpha.25](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2022-03-30)
+
+
+### Bug Fixes
+
+* increase loki gateway's default client max body size ([#26](https://github.com/catalystsquad/chart-platform-services/issues/26)) ([72fc52f](https://github.com/catalystsquad/chart-platform-services/commit/72fc52f7169463b15283798483c58d6a2528095f))
+
 # [1.0.0-alpha.24](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2022-03-29)
 
 
