@@ -24,10 +24,13 @@ certManager:
     stringData: ""
     data: ""
   clusterIssuer:
+    enabled: true
     acme:
       staging: true
       email: ""
     solvers: []
+  selfSignedIssuer:
+    enabled: true
   wildcardCert:
     duration: 2160h0m0s
     renewBefore: 360h0m0s
