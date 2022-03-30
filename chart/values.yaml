@@ -769,6 +769,9 @@ loki:
       basicAuth:
         enabled: true
         existingSecret: loki-auth
+      nginxConfig:
+        httpSnippet: |
+          client_max_body_size 10m;
     compactor:
       enabled: true
       resources: {}
