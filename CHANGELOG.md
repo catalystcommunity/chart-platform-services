@@ -1,3 +1,10 @@
+# [1.0.0-alpha.27](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.26...v1.0.0-alpha.27) (2022-03-30)
+
+
+### Bug Fixes
+
+* Add self signed certificate issuer, enabled by default ([#28](https://github.com/catalystsquad/chart-platform-services/issues/28)) ([bc8b440](https://github.com/catalystsquad/chart-platform-services/commit/bc8b4409aeeb13da52227a2ecfddc3c24cfa3bfb))
+
 # [1.0.0-alpha.26](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.25...v1.0.0-alpha.26) (2022-03-30)
 
 
