@@ -1,0 +1,27 @@
+{{- if .Values.promtail.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-promtail
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    chart: promtail
+    targetRevision: {{ .Values.promtail.targetRevision | quote }}
+    helm:
+      releaseName: promtail
+      version: v3
+      {{- with .Values.promtail.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: promtail
+  syncPolicy:
+  {{- toYaml .Values.promtail.syncPolicy | nindent 4 }}
+{{- end }}
