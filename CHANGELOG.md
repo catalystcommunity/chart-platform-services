@@ -1,3 +1,10 @@
+# [1.0.0-alpha.29](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.28...v1.0.0-alpha.29) (2022-03-31)
+
+
+### Bug Fixes
+
+* add index gateway panel's to loki dashboard ([#30](https://github.com/catalystsquad/chart-platform-services/issues/30)) ([bb4ad1e](https://github.com/catalystsquad/chart-platform-services/commit/bb4ad1e954100f0de27589ffdd267e2472919865))
+
 # [1.0.0-alpha.28](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.27...v1.0.0-alpha.28) (2022-03-30)
 
 
