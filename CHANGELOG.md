@@ -1,3 +1,10 @@
+# [1.0.0-alpha.30](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.29...v1.0.0-alpha.30) (2022-03-31)
+
+
+### Bug Fixes
+
+* Update contour chart version ([#31](https://github.com/catalystsquad/chart-platform-services/issues/31)) ([0401076](https://github.com/catalystsquad/chart-platform-services/commit/040107611423dcf1f7191f96db4cc506a089e974))
+
 # [1.0.0-alpha.29](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.28...v1.0.0-alpha.29) (2022-03-31)
 
 
