@@ -191,7 +191,7 @@ cortex:
       enabled: true
       replicas: 3
       statefulSet:
-        enabled: false
+        enabled: true
       serviceMonitor:
         enabled: true
       resources: {}
