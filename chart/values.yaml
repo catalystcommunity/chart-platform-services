@@ -77,7 +77,7 @@ clusterAutoscaler:
         name: "cluster-autoscaler"
 contour:
   enabled: true
-  targetRevision: "~7.3.10"
+  targetRevision: "~7.4.6"
   syncPolicy:
     automated:
       prune: true
