@@ -1,3 +1,10 @@
+# [1.0.0-alpha.33](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.32...v1.0.0-alpha.33) (2022-03-31)
+
+
+### Bug Fixes
+
+* dashboard panels for cortex memcached ([#34](https://github.com/catalystsquad/chart-platform-services/issues/34)) ([6f68fdd](https://github.com/catalystsquad/chart-platform-services/commit/6f68fdddfbbc7a7cddc79c15611dfc33ada3e30a))
+
 # [1.0.0-alpha.32](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.31...v1.0.0-alpha.32) (2022-03-31)
 
 
