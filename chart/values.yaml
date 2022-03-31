@@ -226,12 +226,6 @@ cortex:
       serviceMonitor:
         enabled: true
       resources: {}
-    query_scheduler:
-      enabled: true
-      replicas: 2
-      serviceMonitor:
-        enabled: true
-      resources: {}
     nginx:
       enabled: true
       replicas: 2
