@@ -1,3 +1,10 @@
+# [1.0.0-alpha.31](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.30...v1.0.0-alpha.31) (2022-03-31)
+
+
+### Bug Fixes
+
+* enable cortex ingester statefulSet by default ([#32](https://github.com/catalystsquad/chart-platform-services/issues/32)) ([d4cd2e3](https://github.com/catalystsquad/chart-platform-services/commit/d4cd2e363e39e33c09d18e79d06fcc9f3ae8fdca))
+
 # [1.0.0-alpha.30](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.29...v1.0.0-alpha.30) (2022-03-31)
 
 
