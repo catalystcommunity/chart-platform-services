@@ -1,3 +1,10 @@
+# [1.0.0-alpha.32](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.31...v1.0.0-alpha.32) (2022-03-31)
+
+
+### Bug Fixes
+
+* remove configuration for cortex query scheduler ([#33](https://github.com/catalystsquad/chart-platform-services/issues/33)) ([10e9765](https://github.com/catalystsquad/chart-platform-services/commit/10e9765eeba3da7f078f7095e995bcf08c67b160))
+
 # [1.0.0-alpha.31](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.30...v1.0.0-alpha.31) (2022-03-31)
 
 
