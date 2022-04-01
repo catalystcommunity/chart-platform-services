@@ -1,3 +1,10 @@
+# [1.0.0-alpha.35](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.34...v1.0.0-alpha.35) (2022-04-01)
+
+
+### Bug Fixes
+
+* add http metric dashboard panels for cortex ([#35](https://github.com/catalystsquad/chart-platform-services/issues/35)) ([9d16235](https://github.com/catalystsquad/chart-platform-services/commit/9d16235f13a40e050bea5a4446f4df20aa5092cf))
+
 # [1.0.0-alpha.34](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.33...v1.0.0-alpha.34) (2022-04-01)
 
 
