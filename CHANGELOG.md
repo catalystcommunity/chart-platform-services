@@ -1,3 +1,10 @@
+# [1.0.0-alpha.36](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.35...v1.0.0-alpha.36) (2022-04-01)
+
+
+### Features
+
+* add prometheus blackbox exporter helm chart ([#37](https://github.com/catalystsquad/chart-platform-services/issues/37)) ([32da1cf](https://github.com/catalystsquad/chart-platform-services/commit/32da1cf1364371c9c34684ce6e0dd1cfef1b9880))
+
 # [1.0.0-alpha.35](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.34...v1.0.0-alpha.35) (2022-04-01)
 
 
