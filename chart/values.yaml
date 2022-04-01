@@ -133,6 +133,7 @@ cortex:
     # generate htpasswd with: htpasswd -B -b -n username password
     # below contains examples, replace them
     htpasswd: |
+      grafana:$2y$05$iBw5CDTPmcz77EqpJeaRnOadjrelHCihXtkE1RRDV1LNOxYQYyTfK
       nonprod:$2y$05$cSeN/kud57vDkTULaweVreqM5k2GpTM950hy2NS5hi/0qaPvUdM4.
       prod:$2y$05$lghWCuEkcwKDVVlIzrfNzuwBa7HUUtUEbbfP0pLzZtbYhGOuOJJz6
       common:$2y$05$v.M9LmRpvgsQ2/clf9tJ9e5LqvI7CsklNsDbnrKZCvqwSuA.M24IC
@@ -597,6 +598,7 @@ loki:
     # generate htpasswd with: htpasswd -B -b -n username password
     # below contains examples, replace them
     htpasswd: |
+      grafana:$2y$05$ZqcZ4f64lALSya4XVrAw.ubf1FXEetQWFiPHguuXriRFVYKRktczu
       nonprod:$2y$05$uVfvMiek6GWobBbpYpWSr..uPx/1la7qSnmsA46Yk01vc.YuzoFWW
       prod:$2y$05$ZzXT9x/nyUqn8iRgG2IR0.kO20dJY73ql4oVXlHR8EMudM7ftYDZa
       common:$2y$05$oBoL5/JZEVwGYX.EZOqRBeO49LX/bGycWH5cmiDIcDH45RuCRpVhq
