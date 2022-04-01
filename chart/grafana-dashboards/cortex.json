@@ -21,17 +21,398 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1648756495460,
+  "iteration": 1648762516144,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 74,
+      "title": "Cortex External HTTP Metrics via Contour",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 72,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "exemplar": true,
+          "expr": "(\n    sum(rate(envoy_cluster_upstream_rq_xx{envoy_cluster_name=\"cortex_cortex-nginx_80\",envoy_response_code_class=\"2\"}[$__rate_interval]))\n/\n    sum(rate(envoy_cluster_upstream_rq_total{envoy_cluster_name=\"cortex_cortex-nginx_80\"}[$__rate_interval])) * 100\n)",
+          "interval": "",
+          "legendFormat": "Successful Requests Percent",
+          "refId": "A"
+        }
+      ],
+      "title": "Percentage of Successful External Requests",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 64,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "exemplar": true,
+          "expr": "sum(rate(envoy_cluster_upstream_rq_total{envoy_cluster_name=\"cortex_cortex-nginx_80\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "Rate of Requests",
+          "refId": "A"
+        }
+      ],
+      "title": "External Rate of Requests",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 30,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 68,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "exemplar": true,
+          "expr": "sum by (envoy_response_code_class) (rate(envoy_cluster_upstream_rq_xx{envoy_cluster_name=\"cortex_cortex-nginx_80\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{ envoy_response_code_class }}XX",
+          "refId": "A"
+        }
+      ],
+      "title": "External Response Rate by Return Code",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 70,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "exemplar": true,
+          "expr": "sum by (envoy_response_code_class) (increase(envoy_cluster_upstream_rq_xx{envoy_cluster_name=\"cortex_cortex-nginx_80\",envoy_response_code_class!=\"2\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{ envoy_response_code_class }}XX",
+          "refId": "A"
+        }
+      ],
+      "title": "External Non-200 Response Increase by Return Code",
+      "type": "timeseries"
+    },
     {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 22
       },
       "id": 34,
       "panels": [],
@@ -97,7 +478,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 1
+        "y": 23
       },
       "id": 12,
       "options": {
@@ -199,7 +580,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 1
+        "y": 23
       },
       "id": 14,
       "options": {
@@ -301,7 +682,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 10
+        "y": 32
       },
       "id": 15,
       "options": {
@@ -403,7 +784,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 10
+        "y": 32
       },
       "id": 16,
       "options": {
@@ -505,7 +886,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 19
+        "y": 41
       },
       "id": 17,
       "options": {
@@ -607,7 +988,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 19
+        "y": 41
       },
       "id": 18,
       "options": {
@@ -709,7 +1090,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 50
       },
       "id": 19,
       "options": {
@@ -811,7 +1192,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 50
       },
       "id": 20,
       "options": {
@@ -913,7 +1294,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 37
+        "y": 59
       },
       "id": 21,
       "options": {
@@ -1015,7 +1396,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 37
+        "y": 59
       },
       "id": 22,
       "options": {
@@ -1117,7 +1498,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 46
+        "y": 68
       },
       "id": 23,
       "options": {
@@ -1219,7 +1600,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 46
+        "y": 68
       },
       "id": 24,
       "options": {
@@ -1321,7 +1702,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 55
+        "y": 77
       },
       "id": 25,
       "options": {
@@ -1423,7 +1804,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 55
+        "y": 77
       },
       "id": 26,
       "options": {
@@ -1525,7 +1906,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 64
+        "y": 86
       },
       "id": 27,
       "options": {
@@ -1627,7 +2008,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 64
+        "y": 86
       },
       "id": 28,
       "options": {
@@ -1729,7 +2110,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 73
+        "y": 95
       },
       "id": 29,
       "options": {
@@ -1831,7 +2212,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 73
+        "y": 95
       },
       "id": 30,
       "options": {
@@ -1934,7 +2315,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 82
+        "y": 104
       },
       "id": 10,
       "options": {
@@ -1970,7 +2351,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 91
+        "y": 113
       },
       "id": 38,
       "panels": [],
@@ -2036,7 +2417,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 92
+        "y": 114
       },
       "id": 36,
       "options": {
@@ -2138,7 +2519,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 92
+        "y": 114
       },
       "id": 40,
       "options": {
@@ -2240,7 +2621,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 101
+        "y": 123
       },
       "id": 42,
       "options": {
@@ -2342,7 +2723,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 101
+        "y": 123
       },
       "id": 44,
       "options": {
@@ -2444,7 +2825,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 110
+        "y": 132
       },
       "id": 46,
       "options": {
@@ -2546,7 +2927,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 110
+        "y": 132
       },
       "id": 48,
       "options": {
@@ -2595,7 +2976,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 119
+        "y": 141
       },
       "id": 50,
       "panels": [],
@@ -2661,7 +3042,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 120
+        "y": 142
       },
       "id": 52,
       "options": {
@@ -2750,7 +3131,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 120
+        "y": 142
       },
       "id": 54,
       "options": {
@@ -2839,7 +3220,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 129
+        "y": 151
       },
       "id": 56,
       "options": {
@@ -2928,7 +3309,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 129
+        "y": 151
       },
       "id": 58,
       "options": {
@@ -3017,7 +3398,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 138
+        "y": 160
       },
       "id": 60,
       "options": {
@@ -3106,7 +3487,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 138
+        "y": 160
       },
       "id": 62,
       "options": {
@@ -3170,6 +3551,6 @@
   "timezone": "",
   "title": "Common / Cortex",
   "uid": "cortex",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
