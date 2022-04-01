@@ -60,32 +60,3 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
-
-{{/*
-Create htpasswd values for Cortex. Append Grafana Datasource password to user defined htpasswd if enabled.
-*/}}
-{{- define "platform-services.cortexhtpasswd" -}}
-{{- if .Values.cortex.basicAuthSecret.enabled }}
-{{- .Values.cortex.basicAuthSecret.htpasswd }}
-{{- end }}
-{{- if .Values.grafana.enabled }}
-{{- if and (.Values.grafana.datasourceAuth) (.Values.grafana.deployDatasources) }}
-{{- htpasswd (required ".Values.grafana.datasourceAuth.cortex.username is required when using datasourceAuth" .Values.grafana.datasourceAuth.cortex.username) (required ".Values.grafana.datasourceAuth.cortex.password is required when using datasourceAuth" .Values.grafana.datasourceAuth.cortex.password) }}
-{{- end }}
-{{- end }}
-{{- end }}
-
-
-{{/*
-Create htpasswd values for Loki. Append Grafana Datasource password to user defined htpasswd if enabled.
-*/}}
-{{- define "platform-services.lokihtpasswd" -}}
-{{- if .Values.loki.basicAuthSecret.enabled }}
-{{- .Values.loki.basicAuthSecret.htpasswd }}
-{{- end }}
-{{- if .Values.grafana.enabled }}
-{{- if and (.Values.grafana.datasourceAuth) (.Values.grafana.deployDatasources) }}
-{{- htpasswd (required ".Values.grafana.datasourceAuth.loki.username is required when using datasourceAuth" .Values.grafana.datasourceAuth.loki.username) (required ".Values.grafana.datasourceAuth.loki.password is required when using datasourceAuth" .Values.grafana.datasourceAuth.loki.password) }}
-{{- end }}
-{{- end }}
-{{- end }}
