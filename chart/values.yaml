@@ -805,6 +805,26 @@ metricsServer:
     extraArgs:
       kubelet-insecure-tls: ""
       kubelet-preferred-address-types: InternalIP,ExternalIP,Hostname
+prometheusBlackboxExporter:
+  enabled: false
+  targetRevision: "~5.6.0"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    serviceMonitor:
+      enabled: true
 promtail:
   enabled: false
   targetRevision: "~3.11.0"

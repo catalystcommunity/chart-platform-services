@@ -1,0 +1,27 @@
+{{- if .Values.prometheusBlackboxExporter.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-prometheus-blackbox-exporter
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: prometheus-blackbox-exporter
+    targetRevision: {{ .Values.prometheusBlackboxExporter.targetRevision | quote }}
+    helm:
+      releaseName: prometheus-blackbox-exporter
+      version: v3
+      {{- with .Values.prometheusBlackboxExporter.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prometheus-blackbox-exporter
+  syncPolicy:
+  {{- toYaml .Values.prometheusBlackboxExporter.syncPolicy | nindent 4 }}
+{{- end }}
