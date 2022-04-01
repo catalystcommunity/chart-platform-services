@@ -8,5 +8,5 @@ metadata:
 {{ include "platform-services.labels" $ | indent 6 }}
 type: Opaque
 data:
-  .htpasswd: {{ include "platform-services.cortexhtpasswd" $ | b64enc | quote }}
+  .htpasswd: {{ .Values.cortex.basicAuthSecret.htpasswd | b64enc | quote }}
 {{- end}}
