@@ -951,7 +951,7 @@ storageClasses:
       name: standard
       enabled: false
       isDefaultStorageClass: false
-contour:
+velero:
   enabled: false
   targetRevision: "~2.29.4"
   syncPolicy:
