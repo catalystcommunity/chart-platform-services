@@ -1,3 +1,10 @@
+# [1.0.0-alpha.39](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.38...v1.0.0-alpha.39) (2022-04-26)
+
+
+### Bug Fixes
+
+* upgrade loki helm chart, remove bug workaround ([#40](https://github.com/catalystsquad/chart-platform-services/issues/40)) ([e49a5c7](https://github.com/catalystsquad/chart-platform-services/commit/e49a5c71a9fdb871c082ccae99a6036c73b24e9f))
+
 # [1.0.0-alpha.38](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.37...v1.0.0-alpha.38) (2022-04-26)
 
 
