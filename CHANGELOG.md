@@ -1,3 +1,10 @@
+# [1.0.0-alpha.38](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.37...v1.0.0-alpha.38) (2022-04-26)
+
+
+### Features
+
+* add velero with initial values ([#39](https://github.com/catalystsquad/chart-platform-services/issues/39)) ([66e004c](https://github.com/catalystsquad/chart-platform-services/commit/66e004c5714f8d26eaca553e244d0738c86d4e6b))
+
 # [1.0.0-alpha.37](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.36...v1.0.0-alpha.37) (2022-04-04)
 
 
