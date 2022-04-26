@@ -871,3 +871,57 @@ storageClasses:
       name: standard
       enabled: false
       isDefaultStorageClass: false
+velero:
+  enabled: false
+  targetRevision: "~2.29.4"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    initContainers:
+      # update for specific cloud service provider
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:v1.4.1
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+    metrics:
+      serviceMonitor:
+        enabled: true
+    configuration:
+      provider: aws
+      backupStorageLocation:
+        name: default
+        provider: aws
+        bucket: replaceme
+      volumeSnapshotLocation:
+        name: default
+        provider: aws
+    serviceAccount:
+      server:
+        name: velero
+        annotations: {}
+          # eks.amazonaws.com/role-arn: arn:aws:iam::account-id:role/iam-role-name
+    credentials:
+      # disable by default, for EKS IRSA
+      useSecret: false
+    schedules: {}
+      # daily-cluster-backup:
+      #   disabled: false
+      #   schedule: "0 6 * * *"
+      #   template:
+      #     ttl: "240h"
+      #     excludedNamespaces:
+      #     - kube-system
