@@ -577,7 +577,7 @@ linkerdJaeger:
       name: jaeger-injector
 loki:
   enabled: false
-  targetRevision: "~0.46.2"
+  targetRevision: "~0.48.3"
   syncPolicy:
     automated:
       prune: true
@@ -620,10 +620,6 @@ loki:
             bucketnames: ""
           boltdb_shipper:
             shared_store: s3
-            index_gateway_client:
-              # hardcode index gateway dns name to mitigate but in the helm chart
-              # https://github.com/grafana/helm-charts/issues/1003
-              server_address: dns:///loki-distributed-index-gateway:9095
         schema_config:
           configs:
             - from: 2022-01-01
@@ -633,82 +629,6 @@ loki:
               index:
                 prefix: loki_index_
                 period: 24h
-      # specify the entire config to override a bug in the chart
-      # https://github.com/grafana/helm-charts/issues/1003 the only deviation from
-      # the devault config is the removal of the if statement enabling the
-      # `index_gateway_client` configuration
-      config: |
-        auth_enabled: false
-        server:
-          http_listen_port: 3100
-        distributor:
-          ring:
-            kvstore:
-              store: memberlist
-        memberlist:
-          join_members:
-            - {{ include "loki.fullname" . }}-memberlist
-        ingester:
-          lifecycler:
-            ring:
-              kvstore:
-                store: memberlist
-              replication_factor: 1
-          chunk_idle_period: 30m
-          chunk_block_size: 262144
-          chunk_encoding: snappy
-          chunk_retain_period: 1m
-          max_transfer_retries: 0
-          wal:
-            dir: /var/loki/wal
-        limits_config:
-          enforce_metric_name: false
-          reject_old_samples: true
-          reject_old_samples_max_age: 168h
-          max_cache_freshness_per_query: 10m
-        {{- if .Values.loki.schemaConfig}}
-        schema_config:
-        {{- toYaml .Values.loki.schemaConfig | nindent 2}}
-        {{- end}}
-        {{- if .Values.loki.storageConfig}}
-        storage_config:
-        {{- toYaml .Values.loki.storageConfig | nindent 2}}
-        {{- end}}
-        chunk_store_config:
-          max_look_back_period: 0s
-        table_manager:
-          retention_deletes_enabled: false
-          retention_period: 0s
-        query_range:
-          align_queries_with_step: true
-          max_retries: 5
-          split_queries_by_interval: 15m
-          cache_results: true
-          results_cache:
-            cache:
-              enable_fifocache: true
-              fifocache:
-                max_size_items: 1024
-                validity: 24h
-        frontend_worker:
-          frontend_address: {{ include "loki.queryFrontendFullname" . }}:9095
-        frontend:
-          log_queries_longer_than: 5s
-          compress_responses: true
-          tail_proxy_url: http://{{ include "loki.querierFullname" . }}:3100
-        compactor:
-          shared_store: filesystem
-        ruler:
-          storage:
-            type: local
-            local:
-              directory: /etc/loki/rules
-          ring:
-            kvstore:
-              store: memberlist
-          rule_path: /tmp/loki/scratch
-          alertmanager_url: https://alertmanager.xx
-          external_url: https://alertmanager.xx
     serviceAccount:
       name: loki
       annotations: {}
