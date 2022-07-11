@@ -1,3 +1,10 @@
+# [1.0.0-alpha.40](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.39...v1.0.0-alpha.40) (2022-07-11)
+
+
+### Features
+
+* allow for extra sidecar datasources in grafana chart ([#41](https://github.com/catalystsquad/chart-platform-services/issues/41)) ([1655faa](https://github.com/catalystsquad/chart-platform-services/commit/1655faa39659c855c022ff0a133d729b6288c057))
+
 # [1.0.0-alpha.39](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.38...v1.0.0-alpha.39) (2022-04-26)
 
 
