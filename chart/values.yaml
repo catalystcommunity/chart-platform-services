@@ -387,6 +387,13 @@ grafana:
     loki:
       username: grafana
       password:
+  extraDatasources: []
+    # - name: Common Prometheus
+    #   type: prometheus
+    #   uid: common-prometheus
+    #   url:  http://kube-prometheus-stack-prometheus.kube-prometheus-stack/
+    #   access: proxy
+    #   isDefault: false
   values:
     deploymentStrategy:
       type: Recreate
