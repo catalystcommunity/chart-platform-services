@@ -48,4 +48,8 @@ data:
 {{- end }}
 {{- end }}
 {{- end }}
+{{- /* add any additional datasources */}}
+{{- if gt (len .Values.grafana.extraDatasources) 0 }}
+{{- toYaml .Values.grafana.extraDatasources | nindent 4 }}
+{{- end }}
 {{- end }}
