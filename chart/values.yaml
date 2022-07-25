@@ -614,6 +614,8 @@ loki:
       structuredConfig:
         limits_config:
           retention_period: 168h # 7 days
+        compactor:
+          retention_enabled: true
         ingester:
           # Disable chunk transfer which is not possible with statefulsets
           # and unnecessary for boltdb-shipper
