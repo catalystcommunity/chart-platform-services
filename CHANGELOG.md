@@ -1,3 +1,10 @@
+# [1.0.0-alpha.42](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.41...v1.0.0-alpha.42) (2022-07-26)
+
+
+### Features
+
+* add a generic grpc service dashboard ([#43](https://github.com/catalystsquad/chart-platform-services/issues/43)) ([6821209](https://github.com/catalystsquad/chart-platform-services/commit/68212098cf5b0547f16abf83743ea8c482d55479))
+
 # [1.0.0-alpha.41](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.40...v1.0.0-alpha.41) (2022-07-26)
 
 
