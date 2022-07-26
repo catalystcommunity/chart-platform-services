@@ -1,3 +1,10 @@
+# [1.0.0-alpha.41](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.40...v1.0.0-alpha.41) (2022-07-26)
+
+
+### Bug Fixes
+
+* enable retention on the loki compactor component ([#42](https://github.com/catalystsquad/chart-platform-services/issues/42)) ([bef3357](https://github.com/catalystsquad/chart-platform-services/commit/bef335726d6d0966168b2f5d3cd642857cb50939))
+
 # [1.0.0-alpha.40](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.39...v1.0.0-alpha.40) (2022-07-11)
 
 
