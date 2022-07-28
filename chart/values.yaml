@@ -344,6 +344,9 @@ fusionAuth:
         user: postgres
     search:
       engine: database
+    ingress:
+      annotations:
+        ingress.kubernetes.io/force-ssl-redirect: "true"
 fusionAuthPostgres:
   enabled: false
   targetRevision: "~11.1.7"
