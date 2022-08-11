@@ -1,3 +1,15 @@
+# [1.0.0-alpha.43](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.42...v1.0.0-alpha.43) (2022-08-11)
+
+
+### Bug Fixes
+
+* **norelease:** allow merge commit for merging alpha to main ([#46](https://github.com/catalystsquad/chart-platform-services/issues/46)) ([4a7bbf5](https://github.com/catalystsquad/chart-platform-services/commit/4a7bbf5ca70c33cb7fb51802a7b248ee6d6b38b5))
+
+
+### Features
+
+* always redirect http to https on fusionauth ingress object ([#44](https://github.com/catalystsquad/chart-platform-services/issues/44)) ([ff67136](https://github.com/catalystsquad/chart-platform-services/commit/ff67136f0be6ed3027c406a93d18b82c4d319d2a))
+
 # [1.0.0-alpha.42](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0-alpha.41...v1.0.0-alpha.42) (2022-07-26)
 
 
