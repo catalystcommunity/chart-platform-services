@@ -1,0 +1,939 @@
+argoNamespace: argo-cd
+certManager:
+  enabled: true
+  targetRevision: "~1.7.1"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    installCRDs: true
+  dnsSecret:
+    enabled: true
+    name: ""
+    stringData: ""
+    data: ""
+  clusterIssuer:
+    enabled: true
+    acme:
+      staging: true
+      email: ""
+    solvers: []
+  selfSignedIssuer:
+    enabled: true
+  wildcardCert:
+    duration: 2160h0m0s
+    renewBefore: 360h0m0s
+    subject: {}
+    commonName: ""
+    organizations: []
+    privateKey:
+      size: 2048
+      algorithm: RSA
+      encoding: PKCS1
+    usages:
+      - server auth
+      - client auth
+    dnsNames: []
+clusterAutoscaler:
+  enabled: false
+  targetRevision: "~9.16.1"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    # hardcode aws values and fields, because other hosted k8s platforms won't
+    # require the cluster autoscaler
+    cloudProvider: aws
+    awsRegion: replaceme
+    autoDiscovery:
+      clusterName: replaceme
+    rbac:
+      serviceAccount:
+        annotations: {}
+          # eks.amazonaws.com/role-arn: arn:aws:iam::account-id:role/iam-role-name
+        # hardcode service account name to make IRSA configuration simpler
+        name: "cluster-autoscaler"
+contour:
+  enabled: true
+  targetRevision: "~7.4.6"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    metrics:
+      serviceMonitor:
+        enabled: true
+    envoy:
+      shutdownManager:
+        resources:
+          requests:
+            cpu: 10m
+      resources:
+        requests:
+          cpu: 10m
+          memory: 50M
+      autoscaling:
+        enabled: true
+        minReplicas: 1
+        maxReplicas: 1
+        targetCPU: 70%
+cortex:
+  enabled: false
+  targetRevision: "~1.4.0"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  basicAuthSecret:
+    enabled: true
+    name: cortex-auth
+    # generate htpasswd with: htpasswd -B -b -n username password
+    # below contains examples, replace them
+    htpasswd: |
+      grafana:$2y$05$iBw5CDTPmcz77EqpJeaRnOadjrelHCihXtkE1RRDV1LNOxYQYyTfK
+      nonprod:$2y$05$cSeN/kud57vDkTULaweVreqM5k2GpTM950hy2NS5hi/0qaPvUdM4.
+      prod:$2y$05$lghWCuEkcwKDVVlIzrfNzuwBa7HUUtUEbbfP0pLzZtbYhGOuOJJz6
+      common:$2y$05$v.M9LmRpvgsQ2/clf9tJ9e5LqvI7CsklNsDbnrKZCvqwSuA.M24IC
+  values:
+    tags:
+      blocks-storage-memcached: true
+    serviceAccount:
+      name: cortex
+      annotations: {}
+        # eks.amazonaws.com/role-arn: arn:aws:iam::account-id:role/iam-role-name
+    ingress:
+      enabled: true
+      ingressClass:
+        enabled: true
+        name: contour
+      hosts:
+        - host: replaceme
+          paths:
+            - /
+    config:
+      storage:
+        engine: blocks
+      blocks_storage:
+        backend: s3
+        s3:
+          bucket_name: replaceme
+          endpoint: s3.us-west-2.amazonaws.com
+      ruler_storage:
+        backend: s3
+        s3:
+          bucket_name: replaceme
+          endpoint: s3.us-west-2.amazonaws.com
+      alertmanager_storage:
+        backend: s3
+        s3: 
+          bucket_name: replaceme
+          endpoint: s3.us-west-2.amazonaws.com
+      limits:
+        max_series_per_metric: 0
+        compactor_blocks_retention_period: 91d
+    alertmanager:
+      serviceMonitor:
+        enabled: true
+    distributor:
+      replicas: 2
+      serviceMonitor:
+        enabled: true
+      resources: {}
+      autoscaling:
+        enabled: false
+        # minReplicas: 2
+        # maxReplicas: 30
+        # targetCPUUtilizationPercentage: 80
+        # targetMemoryUtilizationPercentage: 0  # 80
+    ingester:
+      enabled: true
+      replicas: 3
+      statefulSet:
+        enabled: true
+      serviceMonitor:
+        enabled: true
+      resources: {}
+      autoscaling:
+        enabled: false
+        # minReplicas: 3
+        # maxReplicas: 30
+        # targetMemoryUtilizationPercentage: 80
+      persistentVolume:
+        size: 20Gi # 10x default
+    ruler:
+      enabled: true
+      replicas: 1
+      serviceMonitor:
+        enabled: true
+      resources: {}
+    querier:
+      enabled: true
+      replicas: 2
+      serviceMonitor:
+        enabled: true
+      resources: {}
+      autoscaling:
+        enabled: false
+        # minReplicas: 2
+        # maxReplicas: 30
+        # targetCPUUtilizationPercentage: 80
+        # targetMemoryUtilizationPercentage: 0  # 80
+    query_frontend:
+      enabled: true
+      replicas: 2
+      serviceMonitor:
+        enabled: true
+      resources: {}
+    nginx:
+      enabled: true
+      replicas: 2
+      config:
+        basicAuthSecretName: cortex-auth
+      resources: {}
+      autoscaling:
+        enabled: false
+        # minReplicas: 2
+        # maxReplicas: 30
+        # targetCPUUtilizationPercentage: 80
+        # targetMemoryUtilizationPercentage: 0  # 80
+    store_gateway:
+      enabled: true
+      replicas: 1
+      serviceMonitor:
+        enabled: true
+      resources: {}
+      persistentVolume:
+        size: 20Gi # 10x default
+    compactor:
+      enabled: true
+      replicas: 1
+      serviceMonitor:
+        enabled: true
+      resources: {}
+      persistentVolume:
+        size: 20Gi # 10x default
+    # enabled/disabled via the tags.blocks-storage-memcached boolean
+    memcached-blocks-index:
+      replicaCount: 2
+      resources: {}
+      extraEnv:
+        - name: MEMCACHED_CACHE_SIZE
+          value: "1024"
+        - name: MEMCACHED_MAX_CONNECTIONS
+          value: "1024"
+        - name: MEMCACHED_THREADS
+          value: "4"
+      metrics:
+        serviceMonitor:
+          enabled: true
+    memcached-blocks:
+      architecture: "high-availability"
+      replicaCount: 2
+      resources: {}
+      extraEnv:
+        - name: MEMCACHED_CACHE_SIZE
+          value: "1024"
+        - name: MEMCACHED_MAX_CONNECTIONS
+          value: "1024"
+        - name: MEMCACHED_THREADS
+          value: "4"
+      metrics:
+        serviceMonitor:
+          enabled: true
+    memcached-blocks-metadata:
+      architecture: "high-availability"
+      replicaCount: 2
+      resources: {}
+      extraEnv:
+        - name: MEMCACHED_CACHE_SIZE
+          value: "1024"
+        - name: MEMCACHED_MAX_CONNECTIONS
+          value: "1024"
+        - name: MEMCACHED_THREADS
+          value: "4"
+      metrics:
+        serviceMonitor:
+          enabled: true
+externalDns:
+  enabled: true
+  targetRevision: "~6.1.6"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    sources:
+      - contour-httpproxy
+      - ingress
+fusionAuth:
+  enabled: false
+  targetRevision: "~0.10.5"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    database:
+      host: fusion-auth-postgresql
+      name: fusionauth
+      user: postgres
+      root:
+        user: postgres
+    search:
+      engine: database
+    ingress:
+      annotations:
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+fusionAuthPostgres:
+  enabled: false
+  targetRevision: "~11.1.7"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+grafana:
+  enabled: false
+  targetRevision: "~6.24.1"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  deployDashboards: true
+  deployDatasources: true
+  datasourceAuth:
+    cortex:
+      username: grafana
+      password:
+    loki:
+      username: grafana
+      password:
+  extraDatasources: []
+    # - name: Common Prometheus
+    #   type: prometheus
+    #   uid: common-prometheus
+    #   url:  http://kube-prometheus-stack-prometheus.kube-prometheus-stack/
+    #   access: proxy
+    #   isDefault: false
+  values:
+    deploymentStrategy:
+      type: Recreate
+    envFromSecret: grafana-datasource-auth
+    grafana.ini:
+      server:
+        root_url: https://replaceme
+    ingress:
+      enabled: true
+      annotations: {}
+      ingressClassName: contour
+      hosts:
+        - replaceme
+      tls: []
+    persistence:
+      type: pvc
+      enabled: true
+      size: 20Gi # 2x default
+    resources: {}
+    sidecar:
+      dashboards:
+        enabled: true
+        label: grafana_dashboard
+      datasources:
+        enabled: true
+        label: grafana_datasource
+linkerd:
+  enabled: true
+  rotateCerts: false
+  targetRevision: "~2.11.1"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  trustAnchor:
+    # the identityTrustAnchorsPEM and key should be generated by `step` that has been base64 encoded as a string see https://linkerd.io/2.11/tasks/automatically-rotating-control-plane-tls-credentials/
+    # at the time of writing, the crt and key can be generated with the following command `step certificate create root.linkerd.cluster.local ca.crt ca.key --profile root-ca --no-password --insecure`
+    # then base64 encode the resulting ca.crt and ca.key files, and use that as the crt and key values here. This is only required if you
+    # have set rotateCerts to true
+    key: |
+  values:
+    proxy:
+      resources:
+        cpu:
+          request: 10m
+    identityTrustAnchorsPEM: |
+    installNamespace: false
+  ignoreDifferences:
+    - group: batch
+      jsonPointers:
+        - /spec/schedule
+      kind: CronJob
+      name: linkerd-heartbeat
+    - group: ''
+      jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: linkerd-policy-validator-k8s-tls
+    - group: ''
+      jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: linkerd-proxy-injector-k8s-tls
+    - group: ''
+      jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: linkerd-sp-validator-k8s-tls
+    - group: admissionregistration.k8s.io
+      jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
+      kind: MutatingWebhookConfiguration
+      name: linkerd-proxy-injector-webhook-config
+    - group: admissionregistration.k8s.io
+      jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
+      kind: ValidatingWebhookConfiguration
+      name: linkerd-policy-validator-webhook-config
+    - group: admissionregistration.k8s.io
+      jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
+      kind: ValidatingWebhookConfiguration
+      name: linkerd-sp-validator-webhook-config
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.metadata.annotations."checksum/config"
+      kind: Deployment
+      name: linkerd-destination
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.metadata.annotations."checksum/config"
+      kind: Deployment
+      name: linkerd-proxy-injector
+# run `linkerd check` after deployment to make sure viz is working. If checks fail, delete all the pods in the `linkerd-viz` namespace and once they're all healthy again the checks should pass
+linkerdViz:
+  enabled: true
+  targetRevision: "~2.11.1"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  ignoreDifferences:
+    - jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: tap-injector-k8s-tls
+    - jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: tap-k8s-tls
+    - group: admissionregistration.k8s.io
+      jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
+      kind: MutatingWebhookConfiguration
+      name: linkerd-tap-injector-webhook-config
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.metadata.annotations."checksum/config"
+      kind: Deployment
+      name: tap
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.metadata.annotations."checksum/config"
+      kind: Deployment
+      name: tap-injector
+    - group: apiregistration.k8s.io
+      jsonPointers:
+        - /spec/caBundle
+      kind: APIService
+      name: v1alpha1.tap.linkerd.io
+linkerdJaeger:
+  enabled: true
+  targetRevision: "~2.11.1"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  ignoreDifferences:
+    - jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      kind: Secret
+      name: jaeger-injector-k8s-tls
+    - group: admissionregistration.k8s.io
+      jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
+      kind: MutatingWebhookConfiguration
+      name: linkerd-jaeger-injector-webhook-config
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.metadata.annotations."checksum/config"
+      kind: Deployment
+      name: jaeger-injector
+loki:
+  enabled: false
+  targetRevision: "~0.48.3"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  basicAuthSecret:
+    enabled: true
+    name: loki-auth
+    # generate htpasswd with: htpasswd -B -b -n username password
+    # below contains examples, replace them
+    htpasswd: |
+      grafana:$2y$05$ZqcZ4f64lALSya4XVrAw.ubf1FXEetQWFiPHguuXriRFVYKRktczu
+      nonprod:$2y$05$uVfvMiek6GWobBbpYpWSr..uPx/1la7qSnmsA46Yk01vc.YuzoFWW
+      prod:$2y$05$ZzXT9x/nyUqn8iRgG2IR0.kO20dJY73ql4oVXlHR8EMudM7ftYDZa
+      common:$2y$05$oBoL5/JZEVwGYX.EZOqRBeO49LX/bGycWH5cmiDIcDH45RuCRpVhq
+  values:
+    loki:
+      structuredConfig:
+        limits_config:
+          retention_period: 168h # 7 days
+        compactor:
+          retention_enabled: true
+        ingester:
+          # Disable chunk transfer which is not possible with statefulsets
+          # and unnecessary for boltdb-shipper
+          max_transfer_retries: 0
+          chunk_idle_period: 1h
+          chunk_target_size: 1536000
+          max_chunk_age: 1h
+        storage_config:
+          aws:
+            s3: s3://us-west-2
+            bucketnames: ""
+          boltdb_shipper:
+            shared_store: s3
+        schema_config:
+          configs:
+            - from: 2022-01-01
+              store: boltdb-shipper
+              object_store: aws
+              schema: v11
+              index:
+                prefix: loki_index_
+                period: 24h
+    serviceAccount:
+      name: loki
+      annotations: {}
+        # eks.amazonaws.com/role-arn: arn:aws:iam::account-id:role/iam-role-name
+    serviceMonitor:
+      enabled: true
+    ingester:
+      replicas: 2
+      persistence:
+        enabled: true
+        size: 10Gi
+      resources: {}
+    distributor:
+      replicas: 1
+      autoscaling:
+        enabled: false
+        # minReplicas: 1
+        # maxReplicas: 3
+        # targetCPUUtilizationPercentage: 60
+        # targetMemoryUtilizationPercentage:
+      resources: {}
+    querier:
+      replicas: 1
+      autoscaling:
+        enabled: false
+        # minReplicas: 1
+        # maxReplicas: 3
+        # targetCPUUtilizationPercentage: 60
+        # targetMemoryUtilizationPercentage:
+      resources: {}
+    queryFrontend:
+      replicas: 1
+      autoscaling:
+        enabled: false
+        # minReplicas: 1
+        # maxReplicas: 3
+        # targetCPUUtilizationPercentage: 60
+        # targetMemoryUtilizationPercentage:
+      resources: {}
+    gateway:
+      replicas: 1
+      autoscaling:
+        enabled: false
+        # minReplicas: 1
+        # maxReplicas: 3
+        # targetCPUUtilizationPercentage: 60
+        # targetMemoryUtilizationPercentage:
+      resources: {}
+      ingress:
+        enabled: true
+        ingressClassName: contour
+        hosts:
+          - host: replaceme
+            paths:
+              - path: /
+                pathType: Prefix
+      basicAuth:
+        enabled: true
+        existingSecret: loki-auth
+      nginxConfig:
+        httpSnippet: |
+          client_max_body_size 10m;
+    compactor:
+      enabled: true
+      resources: {}
+      persistence:
+        enabled: true
+        size: 10Gi
+    ruler:
+      enabled: false
+    indexGateway:
+      enabled: true
+      resources: {}
+metricsServer:
+  enabled: true
+  targetRevision: "~5.11.3"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    apiService:
+      create: true # creates the v1beta1.metrics.k8s.io API service
+    extraArgs:
+      kubelet-insecure-tls: ""
+      kubelet-preferred-address-types: InternalIP,ExternalIP,Hostname
+prometheusBlackboxExporter:
+  enabled: false
+  targetRevision: "~5.6.0"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    serviceMonitor:
+      enabled: true
+promtail:
+  enabled: false
+  targetRevision: "~3.11.0"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    serviceMonitor:
+      enabled: true
+    config:
+      lokiAddress: http://loki-distributed-gateway.loki/loki/api/v1/push
+      snippets:
+        extraClientConfigs: |
+          external_labels:
+            cluster: replaceme
+          basic_auth:
+            username: replaceme
+            password: replaceme
+pvcAutoresizer:
+  enabled: true
+  targetRevision: "~0.3.4"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    args:
+      prometheusURL: http://kube-prometheus-stack-prometheus.kube-prometheus-stack
+      interval: 10s
+sentry:
+  enabled: false
+  targetRevision: "~13.1.0"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    global:
+      postgresql:
+        postgresqlPassword: replaceme
+    user:
+      password: replaceme
+    ingress:
+      enabled: false
+      ingressClassName: contour
+      regexPathStyle: Prefix
+      hostname: replaceme
+      annotations:
+        projectcontour.io/tls-cert-namespace: cert-manager
+      tls:
+        - secretName: wildcard-certificate
+          hosts:
+            - replaceme
+    rabbitmq:
+      enabled: false
+    kafka:
+      replicaCount: 1
+      defaultReplicationFactor: 1
+      offsetsTopicReplicationFactor: 1
+      transactionStateLogReplicationFactor: 1
+      transactionStateLogMinIsr: 1
+    redis:
+      architecture: standalone
+      auth:
+        password: replaceme
+    clickhouse:
+      clickhouse:
+        replicas: 1
+    sentry:
+      worker:
+        replicas: 1
+    nginx:
+      enabled: true
+    system:
+      url: 'https://replaceme'
+      secretKey: replaceme
+storageClasses:
+  aws:
+    gp2:
+      name: gp2
+      enabled: false
+      isDefaultStorageClass: false
+    encryptedGp2:
+      name: encrypted-gp2
+      enabled: false
+      isDefaultStorageClass: true
+  gke:
+    ssd:
+      name: ssd
+      enabled: false
+      isDefaultStorageClass: true
+    standard:
+      name: standard
+      enabled: false
+      isDefaultStorageClass: false
+velero:
+  enabled: false
+  targetRevision: "~2.29.4"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values:
+    initContainers:
+      # update for specific cloud service provider
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:v1.4.1
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+    metrics:
+      serviceMonitor:
+        enabled: true
+    configuration:
+      provider: aws
+      backupStorageLocation:
+        name: default
+        provider: aws
+        bucket: replaceme
+      volumeSnapshotLocation:
+        name: default
+        provider: aws
+    serviceAccount:
+      server:
+        name: velero
+        annotations: {}
+          # eks.amazonaws.com/role-arn: arn:aws:iam::account-id:role/iam-role-name
+    credentials:
+      # disable by default, for EKS IRSA
+      useSecret: false
+    schedules: {}
+      # daily-cluster-backup:
+      #   disabled: false
+      #   schedule: "0 6 * * *"
+      #   template:
+      #     ttl: "240h"
+      #     excludedNamespaces:
+      #     - kube-system

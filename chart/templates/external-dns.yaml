@@ -1,0 +1,27 @@
+{{- if .Values.externalDns.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-external-dns
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: external-dns
+    targetRevision: {{ .Values.externalDns.targetRevision | quote }}
+    helm:
+      releaseName: external-dns
+      version: v3
+      {{- with .Values.externalDns.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: external-dns
+  syncPolicy:
+  {{- toYaml .Values.externalDns.syncPolicy | nindent 4 }}
+{{- end }}

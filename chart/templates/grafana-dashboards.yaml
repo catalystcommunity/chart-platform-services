@@ -1,0 +1,23 @@
+{{- if and (.Values.grafana.enabled) (.Values.grafana.deployDashboards) }}
+{{- $files := .Files.Glob "grafana-dashboards/*.json" }}
+{{- if $files }}
+{{- range $path, $fileContents := $files }}
+{{- $dashboardName := regexReplaceAll "(^.*/)(.*)\\.json$" $path "${2}" }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" (include "platform-services.fullname" $) $dashboardName | trunc 53 | trimSuffix "-" }}-dashboard
+  namespace: grafana
+  labels:
+    {{- if $.Values.grafana.values.sidecar.dashboards.label }}
+    {{ $.Values.grafana.values.sidecar.dashboards.label }}: "1"
+    {{- end }}
+    app: {{ template "platform-services.name" $ }}-grafana
+{{ include "platform-services.labels" $ | indent 4 }}
+data:
+  {{ $dashboardName }}.json: |-
+{{ $fileContents | toString | indent 4 }}
+{{- end }}
+{{- end }}
+{{- end }}

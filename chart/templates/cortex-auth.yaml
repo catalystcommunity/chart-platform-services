@@ -1,0 +1,12 @@
+{{- if and (.Values.cortex.enabled) (.Values.cortex.basicAuthSecret.enabled) }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Values.cortex.basicAuthSecret.name }}
+  namespace: cortex
+  labels:
+{{ include "platform-services.labels" $ | indent 6 }}
+type: Opaque
+data:
+  .htpasswd: {{ .Values.cortex.basicAuthSecret.htpasswd | b64enc | quote }}
+{{- end}}

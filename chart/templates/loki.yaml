@@ -1,0 +1,27 @@
+{{- if .Values.loki.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-loki
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    chart: loki-distributed
+    targetRevision: {{ .Values.loki.targetRevision | quote }}
+    helm:
+      releaseName: loki-distributed
+      version: v3
+      {{- with .Values.loki.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: loki
+  syncPolicy:
+  {{- toYaml .Values.loki.syncPolicy | nindent 4 }}
+{{- end }}

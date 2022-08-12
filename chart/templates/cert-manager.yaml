@@ -1,0 +1,27 @@
+{{- if .Values.certManager.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-cert-manager
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://charts.jetstack.io
+    chart: cert-manager
+    targetRevision: {{ .Values.certManager.targetRevision | quote }}
+    helm:
+      releaseName: cert-manager
+      version: v3
+      {{- with .Values.certManager.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+  syncPolicy:
+  {{- toYaml .Values.certManager.syncPolicy | nindent 4 }}
+{{- end }}

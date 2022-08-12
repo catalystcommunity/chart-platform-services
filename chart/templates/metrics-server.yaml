@@ -1,0 +1,27 @@
+{{- if .Values.metricsServer.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-metrics-server
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://charts.bitnami.com/bitnami'
+    chart: metrics-server
+    targetRevision: {{ .Values.metricsServer.targetRevision | quote }}
+    helm:
+      releaseName: metrics-server
+      version: v3
+      {{- with .Values.metricsServer.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: metrics-server
+  syncPolicy:
+  {{- toYaml .Values.metricsServer.syncPolicy | nindent 4 }}
+{{- end }}

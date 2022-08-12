@@ -1,0 +1,19 @@
+{{- if and .Values.certManager.enabled .Values.certManager.clusterIssuer.enabled }}
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: cluster-issuer
+  namespace: cert-manager
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  acme:
+    server: {{ if .Values.certManager.clusterIssuer.acme.staging }}https://acme-staging-v02.api.letsencrypt.org/directory{{ else }}https://acme-v02.api.letsencrypt.org/directory{{ end }}
+    email: {{ .Values.certManager.clusterIssuer.acme.email }}
+    privateKeySecretRef:
+      name: cluster-issuer
+    {{- with .Values.certManager.clusterIssuer.solvers }}
+    solvers:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+{{- end }}
