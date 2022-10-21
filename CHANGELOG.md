@@ -1,3 +1,10 @@
+## [1.0.1-alpha.1](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0...v1.0.1-alpha.1) (2022-10-21)
+
+
+### Bug Fixes
+
+* upgrade the grafana chart ([#49](https://github.com/catalystsquad/chart-platform-services/issues/49)) ([6fde7ba](https://github.com/catalystsquad/chart-platform-services/commit/6fde7ba5acf2dcf10efe2689a962797974bc7880))
+
 # 1.0.0 (2022-08-12)
 
 
