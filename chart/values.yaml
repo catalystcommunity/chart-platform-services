@@ -423,6 +423,9 @@ grafana:
       datasources:
         enabled: true
         label: grafana_datasource
+      alerts:
+        enabled: true
+        label: grafana_alert
 linkerd:
   enabled: true
   rotateCerts: false
