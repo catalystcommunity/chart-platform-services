@@ -366,7 +366,7 @@ fusionAuthPostgres:
         maxDuration: 3m
 grafana:
   enabled: false
-  targetRevision: "~6.24.1"
+  targetRevision: "~6.42.3"
   syncPolicy:
     automated:
       prune: true
