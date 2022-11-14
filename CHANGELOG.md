@@ -1,3 +1,10 @@
+## [1.0.1-alpha.3](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.2...v1.0.1-alpha.3) (2022-11-14)
+
+
+### Bug Fixes
+
+* new dashboard for persistent volume claim usage by cluster ([#51](https://github.com/catalystsquad/chart-platform-services/issues/51)) ([7d16d1b](https://github.com/catalystsquad/chart-platform-services/commit/7d16d1beee084f9e2d86ef2a30efb9790cd6d79a))
+
 ## [1.0.1-alpha.2](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.1...v1.0.1-alpha.2) (2022-11-14)
 
 
