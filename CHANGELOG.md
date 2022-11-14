@@ -1,3 +1,10 @@
+## [1.0.1-alpha.2](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.1...v1.0.1-alpha.2) (2022-11-14)
+
+
+### Bug Fixes
+
+* pvc autoresizer default prometheusURL ([#50](https://github.com/catalystsquad/chart-platform-services/issues/50)) ([6da1c5b](https://github.com/catalystsquad/chart-platform-services/commit/6da1c5b6660017262aaa171c13672354e0b94dbb))
+
 ## [1.0.1-alpha.1](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0...v1.0.1-alpha.1) (2022-10-21)
 
 
