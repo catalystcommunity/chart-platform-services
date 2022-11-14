@@ -807,9 +807,10 @@ pvcAutoresizer:
         factor: 2
         maxDuration: 3m
   values:
-    args:
-      prometheusURL: http://kube-prometheus-stack-prometheus.kube-prometheus-stack
-      interval: 10s
+    controller:
+      args:
+        prometheusURL: http://kube-prometheus-stack-prometheus.kube-prometheus-stack
+        interval: 10s
 sentry:
   enabled: false
   targetRevision: "~13.1.0"
