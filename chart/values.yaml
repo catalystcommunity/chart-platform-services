@@ -349,7 +349,7 @@ fusionAuth:
         ingress.kubernetes.io/force-ssl-redirect: "true"
 fusionAuthPostgres:
   enabled: false
-  targetRevision: "~11.1.7"
+  targetRevision: "~12.1.5"
   syncPolicy:
     automated:
       prune: true
