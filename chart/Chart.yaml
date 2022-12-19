@@ -2,5 +2,5 @@ apiVersion: v2
 name: platform-services
 description: Deploys commonly used kubernetes services as argocd applications, along with any dependent secrets, certificates, etc.
 type: application
-version: 1.0.1-alpha.6
+version: 1.0.1
 appVersion: "0.0.0"
