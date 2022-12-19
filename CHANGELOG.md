@@ -1,3 +1,10 @@
+## [1.0.1-alpha.6](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.5...v1.0.1-alpha.6) (2022-12-19)
+
+
+### Bug Fixes
+
+* upgrade postgres bitnami chart version ([#54](https://github.com/catalystsquad/chart-platform-services/issues/54)) ([121fe0a](https://github.com/catalystsquad/chart-platform-services/commit/121fe0a32e8d7d0bec87b1dd9ba4772136a806f0))
+
 ## [1.0.1-alpha.5](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.4...v1.0.1-alpha.5) (2022-12-19)
 
 
