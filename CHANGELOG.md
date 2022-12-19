@@ -1,3 +1,10 @@
+## [1.0.1-alpha.5](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.4...v1.0.1-alpha.5) (2022-12-19)
+
+
+### Bug Fixes
+
+* metrics-server extra args ([#53](https://github.com/catalystsquad/chart-platform-services/issues/53)) ([f6181bb](https://github.com/catalystsquad/chart-platform-services/commit/f6181bbe3d39ae066d013625f2e2f85f66c1fde6))
+
 ## [1.0.1-alpha.4](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.3...v1.0.1-alpha.4) (2022-12-19)
 
 
