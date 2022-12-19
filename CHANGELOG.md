@@ -1,3 +1,45 @@
+## [1.0.1-alpha.6](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.5...v1.0.1-alpha.6) (2022-12-19)
+
+
+### Bug Fixes
+
+* upgrade postgres bitnami chart version ([#54](https://github.com/catalystsquad/chart-platform-services/issues/54)) ([121fe0a](https://github.com/catalystsquad/chart-platform-services/commit/121fe0a32e8d7d0bec87b1dd9ba4772136a806f0))
+
+## [1.0.1-alpha.5](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.4...v1.0.1-alpha.5) (2022-12-19)
+
+
+### Bug Fixes
+
+* metrics-server extra args ([#53](https://github.com/catalystsquad/chart-platform-services/issues/53)) ([f6181bb](https://github.com/catalystsquad/chart-platform-services/commit/f6181bbe3d39ae066d013625f2e2f85f66c1fde6))
+
+## [1.0.1-alpha.4](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.3...v1.0.1-alpha.4) (2022-12-19)
+
+
+### Bug Fixes
+
+* upgrade helm chart versions that were removed from bitnami repo ([#52](https://github.com/catalystsquad/chart-platform-services/issues/52)) ([c96a5c8](https://github.com/catalystsquad/chart-platform-services/commit/c96a5c8b3055af092a3b1eb53c3802eb1916a188))
+
+## [1.0.1-alpha.3](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.2...v1.0.1-alpha.3) (2022-11-14)
+
+
+### Bug Fixes
+
+* new dashboard for persistent volume claim usage by cluster ([#51](https://github.com/catalystsquad/chart-platform-services/issues/51)) ([7d16d1b](https://github.com/catalystsquad/chart-platform-services/commit/7d16d1beee084f9e2d86ef2a30efb9790cd6d79a))
+
+## [1.0.1-alpha.2](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.1...v1.0.1-alpha.2) (2022-11-14)
+
+
+### Bug Fixes
+
+* pvc autoresizer default prometheusURL ([#50](https://github.com/catalystsquad/chart-platform-services/issues/50)) ([6da1c5b](https://github.com/catalystsquad/chart-platform-services/commit/6da1c5b6660017262aaa171c13672354e0b94dbb))
+
+## [1.0.1-alpha.1](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0...v1.0.1-alpha.1) (2022-10-21)
+
+
+### Bug Fixes
+
+* upgrade the grafana chart ([#49](https://github.com/catalystsquad/chart-platform-services/issues/49)) ([6fde7ba](https://github.com/catalystsquad/chart-platform-services/commit/6fde7ba5acf2dcf10efe2689a962797974bc7880))
+
 # 1.0.0 (2022-08-12)
 
 
