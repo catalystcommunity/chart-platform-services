@@ -1,3 +1,10 @@
+## [1.0.1-alpha.4](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.3...v1.0.1-alpha.4) (2022-12-19)
+
+
+### Bug Fixes
+
+* upgrade helm chart versions that were removed from bitnami repo ([#52](https://github.com/catalystsquad/chart-platform-services/issues/52)) ([c96a5c8](https://github.com/catalystsquad/chart-platform-services/commit/c96a5c8b3055af092a3b1eb53c3802eb1916a188))
+
 ## [1.0.1-alpha.3](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1-alpha.2...v1.0.1-alpha.3) (2022-11-14)
 
 
