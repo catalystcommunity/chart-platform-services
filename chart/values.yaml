@@ -738,8 +738,8 @@ metricsServer:
     apiService:
       create: true # creates the v1beta1.metrics.k8s.io API service
     extraArgs:
-      kubelet-insecure-tls: ""
-      kubelet-preferred-address-types: InternalIP,ExternalIP,Hostname
+      - --kubelet-insecure-tls=true
+      - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
 prometheusBlackboxExporter:
   enabled: false
   targetRevision: "~5.6.0"
