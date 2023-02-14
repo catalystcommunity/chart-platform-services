@@ -1,0 +1,27 @@
+{{- if .Values.awsEcrCreds.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-aws-ecr-creds
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://raw.githubusercontent.com/catalystsquad/charts/main
+    chart: aws-ecr-creds
+    targetRevision: {{ .Values.awsEcrCreds.targetRevision | quote }}
+    helm:
+      releaseName: aws-ecr-creds
+      version: v3
+      {{- with .Values.awsEcrCreds.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: aws-ecr-creds
+  syncPolicy:
+  {{- toYaml .Values.awsEcrCreds.syncPolicy | nindent 4 }}
+{{- end }}

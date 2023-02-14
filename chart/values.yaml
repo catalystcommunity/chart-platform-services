@@ -941,3 +941,44 @@ velero:
       #     ttl: "240h"
       #     excludedNamespaces:
       #     - kube-system
+awsEcrCreds:
+  enabled: false
+  targetRevision: ">=1.0.0"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values: 
+    aws:
+      region: us-west-2
+      account: 123456780
+      accessKeyId: InvalidKeyId
+      secretAccessKey: InvalidAccessKey
+zalandoPostgresOperator:
+  enabled: false
+  targetRevision: ">=1.0.0"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values: {}
