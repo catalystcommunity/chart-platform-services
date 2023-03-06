@@ -1,8 +1,8 @@
-{{ if .Values.linkerd.enabled }}
+{{ if .Values.linkerdCrds.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Release.Name }}-linkerd
+  name: {{ .Release.Name }}-linkerd-crds
   namespace: {{ .Values.argoNamespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,12 +10,12 @@ spec:
   project: default
   source:
     repoURL: https://helm.linkerd.io/stable
-    chart: linkerd2
-    targetRevision: {{ .Values.linkerd.targetRevision | quote }}
+    chart: linkerd-crds
+    targetRevision: {{ .Values.linkerdCrds.targetRevision | quote }}
     helm:
-      releaseName: linkerd
+      releaseName: linkerd-crds
       version: v3
-      {{- with .Values.linkerd.values }}
+      {{- with .Values.linkerdCrds.values }}
       values: |
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -23,8 +23,8 @@ spec:
     server: https://kubernetes.default.svc
     namespace: linkerd
   syncPolicy:
-  {{- toYaml .Values.linkerd.syncPolicy | nindent 4 }}
-  {{- with .Values.linkerd.ignoreDifferences }}
+  {{- toYaml .Values.linkerdCrds.syncPolicy | nindent 4 }}
+  {{- with .Values.linkerdCrds.ignoreDifferences }}
   ignoreDifferences:
     {{- toYaml . | nindent 4 }}
   {{- end }}
