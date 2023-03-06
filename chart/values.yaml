@@ -443,6 +443,22 @@ linkerdCrds:
         duration: 5s
         factor: 2
         maxDuration: 3m
+  ignoreDifferences:
+    - group: apiextensions.k8s.io
+      jqPathExpressions:
+        - .spec.names.shortNames
+      kind: CustomResourceDefinition
+      name: authorizationpolicies.policy.linkerd.io
+    - group: apiextensions.k8s.io
+      jqPathExpressions:
+        - .spec.names.shortNames
+      kind: CustomResourceDefinition
+      name: meshtlsauthentications.policy.linkerd.io
+    - group: apiextensions.k8s.io
+      jqPathExpressions:
+        - .spec.names.shortNames
+      kind: CustomResourceDefinition
+      name: networkauthentications.policy.linkerd.io
 # the linkerd application correlates to the "linkerd-control-plane" helm chart.
 # Previously this referenced the "linkerd2" helm chart until linkerd split out
 # that helm chart into two separate charts for CRDs and the control plane. The
