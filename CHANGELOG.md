@@ -1,3 +1,16 @@
+# [2.0.0-alpha.1](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1...v2.0.0-alpha.1) (2023-03-06)
+
+
+### Features
+
+* add aws-ecr-creds and the zalando postgres-operator ([#56](https://github.com/catalystsquad/chart-platform-services/issues/56)) ([747ee50](https://github.com/catalystsquad/chart-platform-services/commit/747ee50463d9095aaeac6e1aba941a2389ca556d))
+* upgrade helm charts to support k8s 1.25 api ([#57](https://github.com/catalystsquad/chart-platform-services/issues/57)) ([eedc2f1](https://github.com/catalystsquad/chart-platform-services/commit/eedc2f144e8f1e0232f25df72a239de9de0f8668))
+
+
+### BREAKING CHANGES
+
+* application major version upgrades, field changes
+
 ## [1.0.1](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0...v1.0.1) (2022-12-19)
 
 
