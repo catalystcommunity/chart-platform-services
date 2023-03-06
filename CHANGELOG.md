@@ -1,3 +1,10 @@
+# [2.0.0-alpha.2](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2023-03-06)
+
+
+### Bug Fixes
+
+* ignore linkerd crd changes ([#59](https://github.com/catalystsquad/chart-platform-services/issues/59)) ([8bbc604](https://github.com/catalystsquad/chart-platform-services/commit/8bbc60480fde8238e3218b089a4d7f672c2a67ce))
+
 # [2.0.0-alpha.1](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1...v2.0.0-alpha.1) (2023-03-06)
 
 
