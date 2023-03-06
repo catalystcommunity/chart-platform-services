@@ -533,7 +533,9 @@ linkerd:
         - .spec.template.metadata.annotations."checksum/config"
       kind: Deployment
       name: linkerd-proxy-injector
-# run `linkerd check` after deployment to make sure viz is working. If checks fail, delete all the pods in the `linkerd-viz` namespace and once they're all healthy again the checks should pass
+# run `linkerd check` after deployment to make sure viz is working. If checks
+# fail, delete all the pods in the `linkerd-viz` namespace and once they're all
+# healthy again the checks should pass
 linkerdViz:
   enabled: true
   targetRevision: "~2.11.1"
