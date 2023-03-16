@@ -1,0 +1,27 @@
+{{- if .Values.awsEbsCsiDriver.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-aws-ebs-csi-driver
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+    chart: aws-ebs-csi-driver
+    targetRevision: {{ .Values.awsEbsCsiDriver.targetRevision | quote }}
+    helm:
+      releaseName: aws-ebs-csi-driver
+      version: v3
+      {{- with .Values.awsEbsCsiDriver.values }}
+      values: |
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+  {{- toYaml .Values.awsEbsCsiDriver.syncPolicy | nindent 4 }}
+{{- end }}

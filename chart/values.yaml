@@ -1026,3 +1026,25 @@ zalandoPostgresOperator:
         factor: 2
         maxDuration: 3m
   values: {}
+awsEbsCsiDriver:
+  enabled: false
+  targetRevision: "~1.17.0"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  values: {}
+    # controller:
+    #   serviceAccount:
+    #     annotations:
+    #       eks.amazonaws.com/role-arn: arn:aws:iam::111111111111:role/aws-ebs-csi-driver-sa
