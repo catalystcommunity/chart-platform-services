@@ -1,3 +1,10 @@
+# [2.0.0-alpha.3](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2023-03-16)
+
+
+### Features
+
+* add aws ebs csi driver ([#60](https://github.com/catalystsquad/chart-platform-services/issues/60)) ([45d7305](https://github.com/catalystsquad/chart-platform-services/commit/45d7305759acb8e5c53bd03d2c32fde3f4046f63))
+
 # [2.0.0-alpha.2](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2023-03-06)
 
 
