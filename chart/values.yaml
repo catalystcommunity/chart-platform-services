@@ -1028,7 +1028,7 @@ zalandoPostgresOperator:
   values: {}
 awsEbsCsiDriver:
   enabled: false
-  targetRevision: "~1.17.0"
+  targetRevision: "~2.17.0"
   syncPolicy:
     automated:
       prune: true
