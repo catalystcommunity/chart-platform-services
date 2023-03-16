@@ -1,3 +1,10 @@
+# [2.0.0-alpha.4](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2023-03-16)
+
+
+### Bug Fixes
+
+* ebs csi chart version ([#61](https://github.com/catalystsquad/chart-platform-services/issues/61)) ([13660fb](https://github.com/catalystsquad/chart-platform-services/commit/13660fbce75697b7684654ef5e4d7d30e220c580))
+
 # [2.0.0-alpha.3](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2023-03-16)
 
 
