@@ -1,3 +1,10 @@
+# [2.0.0-alpha.5](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2023-03-20)
+
+
+### Bug Fixes
+
+* upgrade linkerd viz, jaeger charts ([#62](https://github.com/catalystsquad/chart-platform-services/issues/62)) ([b571899](https://github.com/catalystsquad/chart-platform-services/commit/b5718996906d6382f5b8cd75d570b949b97f272f))
+
 # [2.0.0-alpha.4](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2023-03-16)
 
 
