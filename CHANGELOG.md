@@ -1,3 +1,44 @@
+# [2.0.0-alpha.5](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2023-03-20)
+
+
+### Bug Fixes
+
+* upgrade linkerd viz, jaeger charts ([#62](https://github.com/catalystsquad/chart-platform-services/issues/62)) ([b571899](https://github.com/catalystsquad/chart-platform-services/commit/b5718996906d6382f5b8cd75d570b949b97f272f))
+
+# [2.0.0-alpha.4](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2023-03-16)
+
+
+### Bug Fixes
+
+* ebs csi chart version ([#61](https://github.com/catalystsquad/chart-platform-services/issues/61)) ([13660fb](https://github.com/catalystsquad/chart-platform-services/commit/13660fbce75697b7684654ef5e4d7d30e220c580))
+
+# [2.0.0-alpha.3](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2023-03-16)
+
+
+### Features
+
+* add aws ebs csi driver ([#60](https://github.com/catalystsquad/chart-platform-services/issues/60)) ([45d7305](https://github.com/catalystsquad/chart-platform-services/commit/45d7305759acb8e5c53bd03d2c32fde3f4046f63))
+
+# [2.0.0-alpha.2](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2023-03-06)
+
+
+### Bug Fixes
+
+* ignore linkerd crd changes ([#59](https://github.com/catalystsquad/chart-platform-services/issues/59)) ([8bbc604](https://github.com/catalystsquad/chart-platform-services/commit/8bbc60480fde8238e3218b089a4d7f672c2a67ce))
+
+# [2.0.0-alpha.1](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1...v2.0.0-alpha.1) (2023-03-06)
+
+
+### Features
+
+* add aws-ecr-creds and the zalando postgres-operator ([#56](https://github.com/catalystsquad/chart-platform-services/issues/56)) ([747ee50](https://github.com/catalystsquad/chart-platform-services/commit/747ee50463d9095aaeac6e1aba941a2389ca556d))
+* upgrade helm charts to support k8s 1.25 api ([#57](https://github.com/catalystsquad/chart-platform-services/issues/57)) ([eedc2f1](https://github.com/catalystsquad/chart-platform-services/commit/eedc2f144e8f1e0232f25df72a239de9de0f8668))
+
+
+### BREAKING CHANGES
+
+* application major version upgrades, field changes
+
 ## [1.0.1](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.0...v1.0.1) (2022-12-19)
 
 
