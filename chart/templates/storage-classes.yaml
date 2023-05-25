@@ -32,6 +32,40 @@ parameters:
   encrypted: "true"
 ---
 {{- end }}
+{{- if .Values.storageClasses.aws.gp3.enabled }}
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: {{ .Values.storageClasses.aws.gp3.name }}
+  annotations:
+    storageclass.kubernetes.io/is-default-class: {{ .Values.storageClasses.aws.gp3.isDefaultStorageClass | quote }}
+    resize.topolvm.io/enabled: "true"
+provisioner: ebs.csi.aws.com
+allowVolumeExpansion: true
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  type: gp3
+  fsType: ext4
+---
+{{- end }}
+{{- if .Values.storageClasses.aws.encryptedGp3.enabled }}
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: {{ .Values.storageClasses.aws.encryptedGp3.name }}
+  annotations:
+    storageclass.kubernetes.io/is-default-class: {{ .Values.storageClasses.aws.encryptedGp3.isDefaultStorageClass | quote }}
+    resize.topolvm.io/enabled: "true"
+provisioner: ebs.csi.aws.com
+allowVolumeExpansion: true
+parameters:
+  type: gp3
+  fsType: ext4
+  encrypted: "true"
+---
+{{- end }}
 {{- if .Values.storageClasses.gke.ssd.enabled }}
 ---
 apiVersion: storage.k8s.io/v1
