@@ -1,3 +1,10 @@
+## [2.0.1-alpha.1](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0...v2.0.1-alpha.1) (2023-05-25)
+
+
+### Bug Fixes
+
+* add gp3 storage class ([#64](https://github.com/catalystsquad/chart-platform-services/issues/64)) ([8cfc51b](https://github.com/catalystsquad/chart-platform-services/commit/8cfc51b87daa813f2372182279d5d535c63bc5e5))
+
 # [2.0.0](https://github.com/catalystsquad/chart-platform-services/compare/v1.0.1...v2.0.0) (2023-03-21)
 
 
