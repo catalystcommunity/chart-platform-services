@@ -922,6 +922,14 @@ storageClasses:
       name: encrypted-gp2
       enabled: false
       isDefaultStorageClass: true
+    gp3:
+      name: gp3
+      enabled: false
+      isDefaultStorageClass: false
+    encryptedGp3:
+      name: encrypted-gp3
+      enabled: false
+      isDefaultStorageClass: false
   gke:
     ssd:
       name: ssd
