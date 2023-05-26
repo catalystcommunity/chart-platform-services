@@ -1,3 +1,15 @@
+# [2.1.0](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0...v2.1.0) (2023-05-26)
+
+
+### Bug Fixes
+
+* add gp3 storage class ([#64](https://github.com/catalystsquad/chart-platform-services/issues/64)) ([8cfc51b](https://github.com/catalystsquad/chart-platform-services/commit/8cfc51b87daa813f2372182279d5d535c63bc5e5))
+
+
+### Features
+
+* add external snapshotter ([#65](https://github.com/catalystsquad/chart-platform-services/issues/65)) ([311e47e](https://github.com/catalystsquad/chart-platform-services/commit/311e47e04221639e1ce24c1ffd83ccbf17ee7d90))
+
 # [2.1.0-alpha.1](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.1-alpha.1...v2.1.0-alpha.1) (2023-05-26)
 
 
