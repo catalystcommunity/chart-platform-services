@@ -1,0 +1,41 @@
+{{- if .Values.externalSnapshotter.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-external-snapshotter-crds
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/kubernetes-csi/external-snapshotter
+    targetRevision: {{ .Values.externalSnapshotter.targetRevision | quote }}
+    # this enables deploying via kustomize
+    path: client/config/crd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+  {{- toYaml .Values.externalSnapshotter.syncPolicy | nindent 4 }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-external-snapshotter
+  namespace: {{ .Values.argoNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/kubernetes-csi/external-snapshotter
+    targetRevision: {{ .Values.externalSnapshotter.targetRevision | quote }}
+    # this enables deploying via kustomize
+    path: deploy/kubernetes/snapshot-controller
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+  {{- toYaml .Values.externalSnapshotter.syncPolicy | nindent 4 }}
+{{- end }}
