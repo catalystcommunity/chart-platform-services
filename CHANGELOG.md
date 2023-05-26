@@ -1,3 +1,10 @@
+# [2.1.0-alpha.1](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.1-alpha.1...v2.1.0-alpha.1) (2023-05-26)
+
+
+### Features
+
+* add external snapshotter ([#65](https://github.com/catalystsquad/chart-platform-services/issues/65)) ([311e47e](https://github.com/catalystsquad/chart-platform-services/commit/311e47e04221639e1ce24c1ffd83ccbf17ee7d90))
+
 ## [2.0.1-alpha.1](https://github.com/catalystsquad/chart-platform-services/compare/v2.0.0...v2.0.1-alpha.1) (2023-05-25)
 
 
