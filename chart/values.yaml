@@ -1056,4 +1056,21 @@ awsEbsCsiDriver:
     #   serviceAccount:
     #     annotations:
     #       eks.amazonaws.com/role-arn: arn:aws:iam::111111111111:role/aws-ebs-csi-driver-sa
+externalSnapshotter:
+  enabled: false
+  targetRevision: "v6.2.1"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
 
