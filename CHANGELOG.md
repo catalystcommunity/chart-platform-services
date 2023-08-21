@@ -1,3 +1,10 @@
+## [2.1.1-alpha.2](https://github.com/catalystsquad/chart-platform-services/compare/v2.1.1-alpha.1...v2.1.1-alpha.2) (2023-08-21)
+
+
+### Bug Fixes
+
+* add new dashboard, pod resource requests by node ([#69](https://github.com/catalystsquad/chart-platform-services/issues/69)) ([2254432](https://github.com/catalystsquad/chart-platform-services/commit/2254432b4831ccfb91bca9bb241ad5f8dddbdd77))
+
 ## [2.1.1-alpha.1](https://github.com/catalystsquad/chart-platform-services/compare/v2.1.0...v2.1.1-alpha.1) (2023-08-01)
 
 
