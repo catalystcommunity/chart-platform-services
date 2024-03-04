@@ -1,3 +1,10 @@
+## [2.1.1-alpha.3](https://github.com/catalystsquad/chart-platform-services/compare/v2.1.1-alpha.2...v2.1.1-alpha.3) (2024-03-04)
+
+
+### Bug Fixes
+
+* add view clusterrolebinding ([#70](https://github.com/catalystsquad/chart-platform-services/issues/70)) ([89bdbc8](https://github.com/catalystsquad/chart-platform-services/commit/89bdbc83cdd49da6c829abbafdb66a2657a1087a))
+
 ## [2.1.1-alpha.2](https://github.com/catalystsquad/chart-platform-services/compare/v2.1.1-alpha.1...v2.1.1-alpha.2) (2023-08-21)
 
 
