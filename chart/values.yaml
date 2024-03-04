@@ -1,7 +1,7 @@
 argoNamespace: argo-cd
 
 rbac:
-  # enables creation of cluster rolebindings to the built-in view role
+  # enables creation of cluster a rolebinding to the built-in view cluster role
   viewRoleEnabled: true
 
 certManager:
