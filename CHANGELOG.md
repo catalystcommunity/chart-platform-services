@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/catalystsquad/chart-platform-services/compare/v2.1.0...v2.1.1) (2024-03-04)
+
+
+### Bug Fixes
+
+* add new dashboard, pod resource requests by node ([#69](https://github.com/catalystsquad/chart-platform-services/issues/69)) ([2254432](https://github.com/catalystsquad/chart-platform-services/commit/2254432b4831ccfb91bca9bb241ad5f8dddbdd77))
+* add view clusterrolebinding ([#70](https://github.com/catalystsquad/chart-platform-services/issues/70)) ([89bdbc8](https://github.com/catalystsquad/chart-platform-services/commit/89bdbc83cdd49da6c829abbafdb66a2657a1087a))
+* quote wildcard cert commonName ([#68](https://github.com/catalystsquad/chart-platform-services/issues/68)) ([d0b7b0c](https://github.com/catalystsquad/chart-platform-services/commit/d0b7b0caa80ede0a11026ae812732423f50f4425))
+
 ## [2.1.1-alpha.3](https://github.com/catalystsquad/chart-platform-services/compare/v2.1.1-alpha.2...v2.1.1-alpha.3) (2024-03-04)
 
 
