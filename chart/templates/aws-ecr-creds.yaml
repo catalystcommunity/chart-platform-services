@@ -9,7 +9,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://raw.githubusercontent.com/catalystsquad/charts/main
+    repoURL: https://raw.githubusercontent.com/catalystcommunity/charts/main
     chart: aws-ecr-creds
     targetRevision: {{ .Values.awsEcrCreds.targetRevision | quote }}
     helm:
