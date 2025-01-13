@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/catalystcommunity/chart-platform-services/compare/v2.1.1...v2.2.0) (2025-01-13)
+
+
+### Features
+
+* update two charts ([#73](https://github.com/catalystcommunity/chart-platform-services/issues/73)) ([e0cad2f](https://github.com/catalystcommunity/chart-platform-services/commit/e0cad2fb2ab21bb522fe43b3f63733bc94b074a0)), closes [#72](https://github.com/catalystcommunity/chart-platform-services/issues/72) [#72](https://github.com/catalystcommunity/chart-platform-services/issues/72)
+
 # [2.2.0-alpha.1](https://github.com/catalystcommunity/chart-platform-services/compare/v2.1.1...v2.2.0-alpha.1) (2025-01-13)
 
 
