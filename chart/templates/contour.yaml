@@ -9,7 +9,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: registry-1.docker.io/bitnamicharts/contour
+    repoURL: registry-1.docker.io/bitnamicharts
     chart: contour
     targetRevision: {{ .Values.contour.targetRevision | quote }}
     helm:
