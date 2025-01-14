@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/catalystcommunity/chart-platform-services/compare/v2.2.0...v2.3.0) (2025-01-14)
+
+
+### Features
+
+* fix contour url more ([#76](https://github.com/catalystcommunity/chart-platform-services/issues/76)) ([68bb16e](https://github.com/catalystcommunity/chart-platform-services/commit/68bb16e08cf35b6b1b590502dabb2101e14565d5)), closes [#72](https://github.com/catalystcommunity/chart-platform-services/issues/72) [#72](https://github.com/catalystcommunity/chart-platform-services/issues/72) [#75](https://github.com/catalystcommunity/chart-platform-services/issues/75) [#75](https://github.com/catalystcommunity/chart-platform-services/issues/75) [#72](https://github.com/catalystcommunity/chart-platform-services/issues/72)
+
 # [2.3.0-alpha.1](https://github.com/catalystcommunity/chart-platform-services/compare/v2.2.0...v2.3.0-alpha.1) (2025-01-13)
 
 
