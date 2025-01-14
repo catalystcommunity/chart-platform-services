@@ -1,3 +1,16 @@
+# [2.3.0-alpha.1](https://github.com/catalystcommunity/chart-platform-services/compare/v2.2.0...v2.3.0-alpha.1) (2025-01-13)
+
+
+### Bug Fixes
+
+* bitnami repoURL ([#75](https://github.com/catalystcommunity/chart-platform-services/issues/75)) ([0cc0144](https://github.com/catalystcommunity/chart-platform-services/commit/0cc0144adf69a08b3748d5317f1a995c7270ae27))
+* move to catalystcommunity ([b4602b7](https://github.com/catalystcommunity/chart-platform-services/commit/b4602b7c1993d7784daa3fc74fcbfbbd7396503f))
+
+
+### Features
+
+* switch contour to updated oci registry ([#72](https://github.com/catalystcommunity/chart-platform-services/issues/72)) ([ff4ea85](https://github.com/catalystcommunity/chart-platform-services/commit/ff4ea85aef796913af5bd0c895cae10bea4f69ec))
+
 # [2.2.0](https://github.com/catalystcommunity/chart-platform-services/compare/v2.1.1...v2.2.0) (2025-01-13)
 
 
